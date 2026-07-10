@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.agents/
+/image.png
+.env
+.env.local
+.vercel/
+*.tsbuildinfo
+.DS_Store
+npm-debug.log*

@@ -1,0 +1,86 @@
+.game-fallback {
+  min-height: clamp(32rem, 68vh, 48rem);
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 0.9rem;
+  padding: 2rem;
+  text-align: center;
+  background:
+    radial-gradient(circle at 50% 35%, rgba(110, 236, 255, 0.1), transparent 32%),
+    linear-gradient(145deg, #171b20, #0b0e12);
+  color: #f7f3ea;
+}
+
+.game-fallback__signal {
+  width: 4.5rem;
+  height: 4.5rem;
+  border: 1px solid rgba(110, 236, 255, 0.5);
+  transform: rotate(45deg);
+  box-shadow: inset 0 0 2rem rgba(110, 236, 255, 0.08);
+}
+
+.game-fallback__eyebrow {
+  margin: 1.25rem 0 0;
+  color: #6eecff;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.game-fallback h2,
+.game-fallback p {
+  max-width: 34rem;
+  margin: 0;
+}
+
+.game-fallback h2 {
+  font-size: clamp(1.8rem, 4vw, 3.2rem);
+}
+
+.game-fallback p:not(.game-fallback__eyebrow) {
+  color: #aeb5bc;
+  line-height: 1.65;
+}
+
+.game-module-loading {
+  min-height: clamp(32rem, 68vh, 48rem);
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 1.25rem;
+  padding: 2rem;
+  color: #f7f3ea;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(110, 236, 255, 0.1), transparent 24%),
+    linear-gradient(145deg, #171b20, #0b0e12);
+  font-size: 0.72rem;
+  font-weight: 750;
+  letter-spacing: 0.12em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.game-module-loading__signal {
+  width: 3.75rem;
+  height: 3.75rem;
+  border: 1px solid rgba(110, 236, 255, 0.58);
+  box-shadow: inset 0 0 1.5rem rgba(110, 236, 255, 0.1);
+  animation: game-module-pulse 1.15s ease-in-out infinite alternate;
+  transform: rotate(45deg);
+}
+
+@keyframes game-module-pulse {
+  to {
+    border-color: rgba(154, 108, 255, 0.75);
+    box-shadow: inset 0 0 2rem rgba(154, 108, 255, 0.14), 0 0 2rem rgba(110, 236, 255, 0.08);
+    transform: rotate(135deg) scale(0.82);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .game-module-loading__signal {
+    animation: none;
+  }
+}
