@@ -1,25 +1,13 @@
-import catReference from "../assets/cat-reference.png";
+import catFront from "../assets/poses/meowave-front.jpg";
 import { Icon } from "./Icon";
 
 export interface HeroProps {
   onPlay?: () => void;
-  onConnect?: () => void;
-  isWalletConnected?: boolean;
-  isWalletConnecting?: boolean;
-  isWalletDisconnecting?: boolean;
-  walletLabel?: string;
 }
 
 export function Hero({
   onPlay,
-  onConnect,
-  isWalletConnected = false,
-  isWalletConnecting = false,
-  isWalletDisconnecting = false,
-  walletLabel,
 }: HeroProps) {
-  const walletBusy = isWalletConnecting || isWalletDisconnecting;
-
   return (
     <section className="hero" id="top" aria-labelledby="hero-title">
       <div className="hero__ambient" aria-hidden="true">
@@ -34,13 +22,13 @@ export function Hero({
         <div className="hero__copy">
           <div className="hero__status">
             <span aria-hidden="true" />
-            Browser runner / Devnet ready
+            Browser runner / Signal ready
           </div>
-          <h1 id="hero-title">
-            <span>SOL CAT</span>
-            <span className="hero__title-run">RUN</span>
+          <h1 id="hero-title" aria-label="MEOWAVE">
+            <span aria-hidden="true">MEO</span>
+            <span className="hero__title-run" aria-hidden="true">WAVE</span>
           </h1>
-          <p className="hero__tagline">Run the chain. Catch the rhythm. Collect every SOL.</p>
+          <p className="hero__tagline">Ride the wave. Catch the rhythm. Collect every SOL.</p>
           <p className="hero__description">
             Guide a headphone-wearing cat through a shifting geometric signal. Find the clean
             line, build the combo, and keep the beat alive.
@@ -52,22 +40,6 @@ export function Hero({
               Play Now
               <span className="button__key">Space</span>
             </a>
-            <button
-              className="button button--glass button--hero"
-              type="button"
-              onClick={onConnect}
-              disabled={walletBusy}
-              aria-label={isWalletConnected ? "Manage connected Solana wallet" : "Connect Solana wallet"}
-            >
-              <Icon name="wallet" />
-              {isWalletDisconnecting
-                ? "Disconnecting..."
-                : isWalletConnecting
-                ? "Connecting..."
-                : isWalletConnected
-                  ? walletLabel ?? "Wallet Connected"
-                  : "Connect Wallet"}
-            </button>
           </div>
 
           <div className="hero__facts" aria-label="Game highlights">
@@ -86,14 +58,14 @@ export function Hero({
           <div className="hero-character__frame">
             <div className="hero-character__image-wrap">
               <img
-                src={catReference}
-                alt="Low-poly orange-and-white cat wearing large headphones beside a portable music player"
+                src={catFront}
+                alt="Front view of Meowave, a low-poly orange-and-white cat wearing silver headphones"
               />
               <span className="hero-character__scan" aria-hidden="true" />
             </div>
             <div className="hero-character__label">
-              <span>Runner 01</span>
-              <strong id="hero-character-title">Signal locked</strong>
+              <span>Meowave / 01</span>
+              <strong id="hero-character-title">Frequency locked</strong>
             </div>
             <div className="hero-character__equalizer" aria-hidden="true">
               <span />
@@ -110,7 +82,7 @@ export function Hero({
 
           <div className="hero-character__caption">
             <span className="hero-character__caption-index">A / 01</span>
-            <span>Orange signal runner</span>
+            <span>Meowave signal runner</span>
             <span>Headphones calibrated</span>
           </div>
         </div>

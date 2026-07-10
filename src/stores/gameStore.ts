@@ -363,7 +363,7 @@ export const useGameStore = create<GameStore>()(
       setTouchControls: (touchControls) => set({ touchControls }),
     }),
     {
-      name: 'sol-cat-run-settings-v1',
+      name: 'meowave-settings-v1',
       storage: createJSONStorage(() => localStorage),
       partialize: (state) => ({
         bestScore: state.bestScore,

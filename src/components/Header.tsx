@@ -1,31 +1,22 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { BrandMark } from "./BrandMark";
 import { Icon } from "./Icon";
 
 export interface HeaderProps {
   onPlay?: () => void;
-  onConnect?: () => void;
-  walletLabel?: string;
-  isWalletConnected?: boolean;
-  isWalletConnecting?: boolean;
-  isWalletDisconnecting?: boolean;
+  socialLinks?: ReactNode;
 }
 
 const navigation = [
   { label: "Game", href: "#game" },
   { label: "Story", href: "#story" },
   { label: "How to Play", href: "#how-to-play" },
-  { label: "Leaderboard", href: "#leaderboard" },
-  { label: "Wallet", href: "#wallet" },
+  { label: "Tokenomics", href: "#tokenomics" },
 ];
 
 export function Header({
   onPlay,
-  onConnect,
-  walletLabel,
-  isWalletConnected = false,
-  isWalletConnecting = false,
-  isWalletDisconnecting = false,
+  socialLinks,
 }: HeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
@@ -45,7 +36,6 @@ export function Header({
   }, [menuOpen]);
 
   const closeMenu = () => setMenuOpen(false);
-  const walletBusy = isWalletConnecting || isWalletDisconnecting;
 
   return (
     <header className="site-header">
@@ -76,8 +66,9 @@ export function Header({
         </nav>
 
         <div className="site-header__actions">
+          {socialLinks}
           <a
-            className="button button--small button--ghost"
+            className="button button--small button--primary"
             href="#game"
             onClick={() => {
               closeMenu();
@@ -87,25 +78,6 @@ export function Header({
             <Icon name="play" />
             Play Now
           </a>
-          <button
-            className={`button button--small ${isWalletConnected ? "button--connected" : "button--primary"}`}
-            type="button"
-            onClick={() => {
-              closeMenu();
-              onConnect?.();
-            }}
-            disabled={walletBusy}
-            aria-label={isWalletConnected ? "Manage connected Solana wallet" : "Connect Solana wallet"}
-          >
-            <Icon name="wallet" />
-            {isWalletDisconnecting
-              ? "Disconnecting..."
-              : isWalletConnecting
-              ? "Connecting..."
-              : isWalletConnected
-                ? walletLabel ?? "Connected"
-                : "Connect Wallet"}
-          </button>
         </div>
       </div>
     </header>

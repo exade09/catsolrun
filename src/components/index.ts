@@ -7,3 +7,5 @@ export type { HeroProps } from "./Hero";
 export { Icon } from "./Icon";
 export type { IconName } from "./Icon";
 export { SectionIntro } from "./SectionIntro";
+export { SocialLinks } from "./SocialLinks";
+export type { SocialLinksProps } from "./SocialLinks";

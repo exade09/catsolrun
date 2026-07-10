@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-labelledby="title">
+  <title id="title">Meowave low-poly cat mark</title>
+  <defs>
+    <linearGradient id="bg" x1="10" y1="8" x2="86" y2="90" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#29272d"/>
+      <stop offset="1" stop-color="#111317"/>
+    </linearGradient>
+    <linearGradient id="wave" x1="26" y1="79" x2="70" y2="79" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#78f5b0"/>
+      <stop offset=".5" stop-color="#51e5e7"/>
+      <stop offset="1" stop-color="#a779ff"/>
+    </linearGradient>
+  </defs>
+  <path fill="url(#bg)" d="M17 5h61l13 17-5 59-18 10H20L5 74 8 19Z"/>
+  <path fill="#b86534" d="m22 40 3-27 20 15 9-1 18-14 4 28-8 34-39-1Z"/>
+  <path fill="#e8a65d" d="m25 18 20 13 8-2 18-11-5 47-35 1Z"/>
+  <path fill="#f6f0e3" d="m45 28 8 1 8 38-14 12-15-13 8-20Z"/>
+  <path fill="#fffaf0" d="m48 29 5 1 2 27-7 8-7-7 3-17Z"/>
+  <path fill="#f0cbb7" d="m25 18 15 15-17 8Zm46 0L56 33l18 8Z"/>
+  <path fill="#4a4f55" d="M18 43C18 24 30 9 48 9s30 15 30 34h-7c0-15-9-27-23-27S25 28 25 43Z"/>
+  <path fill="#f1f3f4" d="M13 43h17v27H19L11 61Zm53 0h17l2 18-8 9H66Z"/>
+  <path fill="#8d9399" d="m17 48 9-3v21l-9-3Zm53-3 9 3v15l-9 3Z"/>
+  <path fill="#393c40" d="m18 49 5-2v17l-5-2Zm55-2 5 2v13l-5 2Z"/>
+  <path fill="#d68c7e" d="m43 57 5-3 5 3-5 5Z"/>
+  <path fill="#3a2e2a" d="m48 62 7 3-7 5-7-5Z"/>
+  <path fill="url(#wave)" d="M24 80h37l-5 5H19Zm16-8h37l-5 5H35Zm2 16h31l-5 4H37Z"/>
+</svg>

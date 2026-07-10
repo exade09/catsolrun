@@ -16,9 +16,9 @@ export function GameOverScreen() {
   }
 
   const share = async (): Promise<void> => {
-    const text = `I scored ${finalStats.score.toLocaleString('en-US')} in SOL CAT RUN and collected ${finalStats.sol} in-game SOL.`
+    const text = `I scored ${finalStats.score.toLocaleString('en-US')} in MEOWAVE and collected ${finalStats.sol} in-game SOL.`
     try {
-      if (navigator.share) await navigator.share({ title: 'SOL CAT RUN', text, url: window.location.href })
+      if (navigator.share) await navigator.share({ title: 'MEOWAVE', text, url: window.location.href })
       else {
         await navigator.clipboard.writeText(`${text} ${window.location.href}`)
         setShareStatus('Score Copied')

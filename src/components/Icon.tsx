@@ -12,8 +12,7 @@ export type IconName =
   | "pulse"
   | "shield"
   | "spark"
-  | "speed"
-  | "wallet";
+  | "speed";
 
 interface IconProps extends Omit<SVGProps<SVGSVGElement>, "children"> {
   name: IconName;
@@ -84,13 +83,6 @@ export function Icon({ name, title, ...props }: IconProps) {
           <path d="M5 16a8 8 0 1 1 14 0" />
           <path d="m12 13 4-4" />
           <path d="M4 19h16" />
-        </>
-      )}
-      {name === "wallet" && (
-        <>
-          <path d="M4 6.5A2.5 2.5 0 0 1 6.5 4H19v16H6.5A2.5 2.5 0 0 1 4 17.5v-11Z" />
-          <path d="M15 10h6v5h-6a2.5 2.5 0 0 1 0-5Z" />
-          <path d="M16 12.5h.01" />
         </>
       )}
     </svg>

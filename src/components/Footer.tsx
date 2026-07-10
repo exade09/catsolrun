@@ -16,12 +16,12 @@ export function Footer() {
       </div>
       <div className="site-footer__line" />
       <div className="site-footer__bottom">
-        <p>&copy; {year} SOL CAT RUN. Built for play.</p>
-        <p>In-game SOL is not cryptocurrency. No transaction is required.</p>
+        <p>&copy; {year} MEOWAVE. Built for play.</p>
+        <p>In-game SOL is a gameplay collectible.</p>
         <nav aria-label="Footer navigation">
           <a href="#game">Game</a>
+          <a href="#story">Story</a>
           <a href="#faq">FAQ</a>
-          <a href="#wallet">Wallet</a>
         </nav>
       </div>
     </footer>

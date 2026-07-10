@@ -2,16 +2,16 @@ import { Icon, SectionIntro } from "../components";
 
 const questions = [
   {
-    question: "Do I need a wallet to play?",
-    answer: "No. Every gameplay feature is available without a wallet. Connecting one only provides an optional player identity for your local record.",
+    question: "What is Meowave?",
+    answer: "Meowave is a browser-based low-poly runner about a calm cat, a restless signal, and a route that moves to its own rhythm.",
   },
   {
     question: "Is the SOL I collect real cryptocurrency?",
     answer: "No. In-game SOL is a gameplay collectible used for scoring and combos. It has no monetary value and cannot be withdrawn or transferred.",
   },
   {
-    question: "Will the game ask me to sign a transaction?",
-    answer: "No. Connecting is read-only for identity, and playing never starts a transaction. SOL CAT RUN never asks for a seed phrase or private key.",
+    question: "Do I need to install anything?",
+    answer: "No. The complete game runs directly in a modern browser with WebGL enabled. Press Play Now and the route opens on the page.",
   },
   {
     question: "Can I play on a phone or tablet?",
@@ -19,7 +19,7 @@ const questions = [
   },
   {
     question: "Where is my best score stored?",
-    answer: "Your best score and settings are stored locally in your browser. Demo leaderboard entries are clearly labeled and do not come from a blockchain.",
+    answer: "Your personal best, audio setting, motion preference, and touch-control setting stay locally in your browser.",
   },
 ];
 
@@ -31,7 +31,7 @@ export function FAQSection() {
           <SectionIntro
             eyebrow="Before the run"
             title={<>Clear answers.<br />No fine print.</>}
-            description="The game is free to enter, the wallet is optional, and every collectible stays inside the game."
+            description="The game opens directly in your browser, and every in-game collectible stays inside the run."
             id="faq-title"
           />
           <a className="faq-section__game-link" href="#game">
@@ -41,7 +41,7 @@ export function FAQSection() {
 
         <div className="faq-list">
           {questions.map((item, index) => (
-            <details key={item.question} name="sol-cat-faq" open={index === 0}>
+            <details key={item.question} name="meowave-faq" open={index === 0}>
               <summary>
                 <span className="faq-list__index">0{index + 1}</span>
                 <span>{item.question}</span>

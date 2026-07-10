@@ -49,6 +49,478 @@
   }
 }
 
+@layer components {
+  .brand-mark__symbol {
+    position: relative;
+    filter: drop-shadow(0 7px 13px rgba(0, 0, 0, 0.32));
+  }
+
+  .brand-mark__symbol img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .brand-mark__type {
+    line-height: 0.86;
+  }
+
+  .brand-mark__type span:first-child {
+    color: var(--paper);
+  }
+
+  .brand-mark__type span:last-child {
+    color: var(--cyan);
+  }
+
+  .social-links {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .social-links__item {
+    position: relative;
+    display: inline-flex;
+    min-height: 38px;
+    align-items: center;
+    gap: 9px;
+    border: 1px solid rgba(242, 237, 223, 0.11);
+    padding: 4px 9px 4px 5px;
+    color: rgba(242, 237, 223, 0.68);
+    background: rgba(255, 255, 255, 0.025);
+    font-size: 0.62rem;
+    font-weight: 750;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    clip-path: polygon(7px 0, 100% 0, 100% calc(100% - 7px), calc(100% - 7px) 100%, 0 100%, 0 7px);
+    transition: color 180ms ease, border-color 180ms ease, background-color 180ms ease, transform 220ms var(--ease-out);
+  }
+
+  .social-links__item:hover {
+    color: var(--paper);
+    border-color: rgba(110, 236, 255, 0.42);
+    background: rgba(110, 236, 255, 0.07);
+    transform: translateY(-2px) rotate(-1deg);
+  }
+
+  .social-links__icon {
+    width: 27px;
+    height: 27px;
+    flex: 0 0 27px;
+    overflow: visible;
+    filter: drop-shadow(0 5px 8px rgba(0, 0, 0, 0.28));
+  }
+
+  .social-links--compact .social-links__item {
+    width: 38px;
+    justify-content: center;
+    padding: 4px;
+  }
+
+  .social-links--compact .social-links__icon {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+@layer sections {
+  .hero {
+    background:
+      linear-gradient(118deg, transparent 0 58%, rgba(110, 236, 255, 0.035) 58% 59%, transparent 59%),
+      conic-gradient(from 215deg at 72% 44%, rgba(220, 139, 66, 0.16), transparent 21%, rgba(154, 108, 255, 0.13) 31%, transparent 44%),
+      radial-gradient(circle at 20% 22%, rgba(243, 181, 103, 0.11), transparent 28rem),
+      #101214;
+  }
+
+  .hero::before {
+    position: absolute;
+    z-index: 0;
+    top: 9%;
+    right: -4%;
+    width: min(58vw, 850px);
+    aspect-ratio: 1.12;
+    border: 1px solid rgba(242, 237, 223, 0.08);
+    content: "";
+    background:
+      linear-gradient(148deg, rgba(255, 255, 255, 0.055), transparent 35%),
+      linear-gradient(38deg, rgba(154, 108, 255, 0.08), transparent 42%);
+    clip-path: polygon(8% 9%, 61% 0, 100% 24%, 88% 84%, 50% 100%, 4% 76%, 0 31%);
+    transform: rotate(-6deg);
+  }
+
+  .hero h1 .hero__title-run {
+    color: rgba(154, 108, 255, 0.08);
+    -webkit-text-stroke-color: var(--cyan);
+    text-shadow: 16px 13px 0 rgba(220, 139, 66, 0.13);
+  }
+
+  .hero-character__frame {
+    border-color: rgba(110, 236, 255, 0.22);
+    background: linear-gradient(145deg, rgba(154, 108, 255, 0.12), rgba(15, 16, 17, 0.55));
+    box-shadow: 28px 30px 0 rgba(243, 181, 103, 0.055), 0 35px 90px rgba(0, 0, 0, 0.4);
+    transform: rotate(2.4deg) skewY(-0.7deg);
+  }
+
+  .hero-character__image-wrap img {
+    filter: contrast(1.05) saturate(0.9);
+  }
+
+  .story-visual__angles {
+    position: absolute;
+    z-index: 6;
+    bottom: -32px;
+    left: 7%;
+    display: flex;
+    gap: 8px;
+  }
+
+  .story-visual__angles figure {
+    position: relative;
+    width: 82px;
+    margin: 0;
+    border: 1px solid rgba(31, 33, 33, 0.23);
+    padding: 4px;
+    background: rgba(239, 235, 224, 0.88);
+    box-shadow: 8px 9px 0 rgba(31, 33, 33, 0.08);
+    clip-path: polygon(9% 0, 100% 5%, 95% 92%, 83% 100%, 0 94%, 3% 8%);
+  }
+
+  .story-visual__angles figure:nth-child(2) {
+    transform: translateY(8px) rotate(2deg);
+  }
+
+  .story-visual__angles img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    clip-path: polygon(7% 0, 100% 4%, 95% 93%, 0 96%);
+  }
+
+  .story-visual__angles figcaption {
+    padding: 5px 3px 3px;
+    color: rgba(31, 33, 33, 0.62);
+    font-family: Consolas, monospace;
+    font-size: 0.48rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .tokenomics-section {
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 82% 28%, rgba(154, 108, 255, 0.15), transparent 30rem),
+      radial-gradient(circle at 9% 81%, rgba(66, 232, 211, 0.08), transparent 26rem),
+      linear-gradient(142deg, #0e1012, #1b1a1d 52%, #111417);
+  }
+
+  .tokenomics-section::before {
+    position: absolute;
+    top: -22%;
+    left: -9%;
+    width: 43vw;
+    aspect-ratio: 1;
+    border: 1px solid rgba(243, 181, 103, 0.09);
+    content: "";
+    background: linear-gradient(135deg, rgba(220, 139, 66, 0.075), transparent 64%);
+    clip-path: polygon(14% 0, 100% 20%, 78% 100%, 0 68%);
+    transform: rotate(18deg);
+  }
+
+  .tokenomics-section__mesh {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .tokenomics-section__mesh span {
+    position: absolute;
+    width: clamp(80px, 11vw, 170px);
+    aspect-ratio: 1;
+    border: 1px solid rgba(242, 237, 223, 0.08);
+    clip-path: polygon(12% 0, 100% 22%, 76% 100%, 0 67%);
+  }
+
+  .tokenomics-section__mesh span:nth-child(1) { top: 9%; right: 4%; transform: rotate(17deg); }
+  .tokenomics-section__mesh span:nth-child(2) { right: 34%; bottom: 3%; transform: rotate(-24deg) scale(0.62); }
+  .tokenomics-section__mesh span:nth-child(3) { bottom: 19%; left: 3%; transform: rotate(38deg) scale(0.38); }
+
+  .tokenomics-section__layout {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: minmax(310px, 0.7fr) minmax(510px, 1fr);
+    align-items: center;
+    gap: clamp(55px, 8vw, 112px);
+  }
+
+  .tokenomics-section__note {
+    max-width: 54ch;
+    margin-top: 35px;
+    border-left: 2px solid var(--cyan);
+    padding-left: 17px;
+    color: rgba(242, 237, 223, 0.46);
+    font-size: 0.72rem;
+    line-height: 1.65;
+  }
+
+  .tokenomics-board {
+    position: relative;
+    min-height: 590px;
+    overflow: hidden;
+    border: 1px solid rgba(242, 237, 223, 0.17);
+    background:
+      linear-gradient(112deg, rgba(255, 255, 255, 0.06), transparent 31%),
+      rgba(10, 12, 14, 0.7);
+    box-shadow: 26px 32px 0 rgba(154, 108, 255, 0.035), 0 42px 85px rgba(0, 0, 0, 0.32);
+    clip-path: polygon(7% 0, 94% 3%, 100% 13%, 96% 91%, 86% 100%, 6% 96%, 0 86%, 2% 9%);
+  }
+
+  .tokenomics-board::before {
+    position: absolute;
+    z-index: 0;
+    inset: 0;
+    content: "";
+    background:
+      linear-gradient(120deg, transparent 0 48%, rgba(66, 232, 211, 0.08) 48% 49%, transparent 49%),
+      linear-gradient(36deg, transparent 0 59%, rgba(243, 181, 103, 0.09) 59% 60%, transparent 60%);
+  }
+
+  .tokenomics-board__portrait {
+    position: absolute;
+    z-index: 1;
+    inset: 28px 36% 28px 28px;
+    overflow: hidden;
+    background: #8f908d;
+    clip-path: polygon(7% 0, 100% 4%, 94% 93%, 82% 100%, 0 94%, 3% 8%);
+  }
+
+  .tokenomics-board__portrait::after {
+    position: absolute;
+    inset: 0;
+    content: "";
+    background: linear-gradient(to top, rgba(8, 10, 12, 0.76), transparent 43%);
+    pointer-events: none;
+  }
+
+  .tokenomics-board__portrait img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: saturate(0.84) contrast(1.04);
+  }
+
+  .tokenomics-board__portrait > span {
+    position: absolute;
+    z-index: 2;
+    bottom: 24px;
+    left: 24px;
+    color: rgba(247, 244, 235, 0.72);
+    font-family: Consolas, monospace;
+    font-size: 0.57rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .tokenomics-board__facts {
+    position: absolute;
+    z-index: 3;
+    top: 79px;
+    right: 25px;
+    display: grid;
+    width: 46%;
+    gap: 10px;
+  }
+
+  .tokenomics-fact {
+    min-height: 116px;
+    border: 1px solid rgba(242, 237, 223, 0.16);
+    padding: 17px 19px;
+    background: rgba(19, 21, 24, 0.88);
+    box-shadow: 11px 12px 24px rgba(0, 0, 0, 0.18);
+    backdrop-filter: blur(12px);
+    clip-path: polygon(7px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 7px);
+  }
+
+  .tokenomics-fact dt {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    color: rgba(242, 237, 223, 0.5);
+    font-size: 0.58rem;
+    font-weight: 750;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+  }
+
+  .tokenomics-fact dt span {
+    font-family: Consolas, monospace;
+  }
+
+  .tokenomics-fact dd {
+    margin-top: 15px;
+    color: var(--paper);
+    font-size: clamp(1.45rem, 3vw, 2.25rem);
+    font-weight: 780;
+    letter-spacing: -0.055em;
+  }
+
+  .tokenomics-fact--orange { border-left: 2px solid var(--orange-light); }
+  .tokenomics-fact--cyan { border-left: 2px solid var(--cyan); }
+  .tokenomics-fact--violet { border-left: 2px solid var(--violet); }
+
+  .tokenomics-board__wave {
+    position: absolute;
+    z-index: 2;
+    right: 16px;
+    bottom: 23px;
+    width: 52%;
+    overflow: visible;
+    fill: none;
+    stroke: var(--cyan);
+    stroke-width: 1.2;
+    opacity: 0.42;
+  }
+}
+
+@layer responsive {
+  @media (max-width: 1100px) {
+    .social-links--compact .social-links__item {
+      width: 34px;
+      min-height: 34px;
+    }
+
+    .social-links--compact .social-links__icon {
+      width: 25px;
+      height: 25px;
+    }
+
+    .tokenomics-section__layout {
+      grid-template-columns: minmax(280px, 0.65fr) minmax(470px, 1fr);
+      gap: 45px;
+    }
+  }
+
+  @media (max-width: 960px) {
+    .site-header__actions {
+      align-items: center;
+    }
+
+    .site-header__actions .social-links {
+      flex: 1;
+    }
+
+    .tokenomics-section__layout {
+      grid-template-columns: 1fr;
+    }
+
+    .tokenomics-section__copy {
+      max-width: 680px;
+    }
+
+    .tokenomics-board {
+      width: min(100%, 720px);
+      justify-self: center;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .social-links--compact .social-links__item {
+      width: 42px;
+      min-height: 42px;
+    }
+
+    .social-links--compact .social-links__icon {
+      width: 30px;
+      height: 30px;
+    }
+
+    .story-visual__angles {
+      bottom: -42px;
+      left: 5%;
+    }
+
+    .tokenomics-board {
+      min-height: 760px;
+    }
+
+    .tokenomics-board__portrait {
+      inset: 24px 24px 300px;
+    }
+
+    .tokenomics-board__facts {
+      top: auto;
+      right: 24px;
+      bottom: 38px;
+      left: 24px;
+      width: auto;
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .tokenomics-fact {
+      min-height: 210px;
+      padding: 15px;
+    }
+
+    .tokenomics-fact dt {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    .tokenomics-fact dd {
+      margin-top: 24px;
+      font-size: clamp(1.25rem, 5vw, 1.8rem);
+      overflow-wrap: anywhere;
+    }
+
+    .tokenomics-board__wave {
+      display: none;
+    }
+  }
+
+  @media (max-width: 520px) {
+    .site-header__actions .social-links {
+      width: 100%;
+      justify-content: space-between;
+    }
+
+    .site-header__actions .social-links__item {
+      flex: 0 0 44px;
+    }
+
+    .story-visual__angles figure {
+      width: 68px;
+    }
+
+    .tokenomics-board {
+      min-height: 820px;
+    }
+
+    .tokenomics-board__portrait {
+      inset: 18px 18px 455px;
+    }
+
+    .tokenomics-board__facts {
+      right: 18px;
+      bottom: 42px;
+      left: 18px;
+      grid-template-columns: 1fr;
+    }
+
+    .tokenomics-fact {
+      min-height: 105px;
+    }
+
+    .tokenomics-fact dt {
+      flex-direction: row;
+    }
+
+    .tokenomics-fact dd {
+      margin-top: 12px;
+    }
+  }
+}
+
 @layer base {
   :root {
     color-scheme: dark;
@@ -300,30 +772,6 @@
 
   a:hover .brand-mark__symbol {
     transform: rotate(-4deg) scale(1.03);
-  }
-
-  .brand-mark__symbol svg {
-    width: 100%;
-    height: 100%;
-  }
-
-  .brand-mark__ear {
-    fill: var(--orange);
-  }
-
-  .brand-mark__face {
-    fill: var(--cream);
-  }
-
-  .brand-mark__muzzle {
-    fill: #ca8b5b;
-  }
-
-  .brand-mark__band,
-  .brand-mark__cup {
-    fill: var(--ink-800);
-    stroke: var(--concrete-300);
-    stroke-width: 2;
   }
 
   .brand-mark__type {
@@ -976,7 +1424,6 @@
   }
 
   .game-section__heading,
-  .leaderboard-section__heading,
   .features-section__heading {
     display: flex;
     align-items: end;
@@ -1851,367 +2298,6 @@
 }
 
 @layer sections {
-  .leaderboard-section {
-    overflow: hidden;
-    color: #202222;
-    background:
-      linear-gradient(120deg, rgba(255, 255, 255, 0.18), transparent 38%),
-      #c7c6bf;
-  }
-
-  .leaderboard-section::before {
-    position: absolute;
-    top: -18%;
-    right: -4%;
-    width: 40vw;
-    height: 38vw;
-    content: "";
-    opacity: 0.32;
-    background:
-      repeating-linear-gradient(90deg, rgba(35, 37, 37, 0.16) 0 1px, transparent 1px 70px),
-      repeating-linear-gradient(0deg, rgba(35, 37, 37, 0.16) 0 1px, transparent 1px 70px);
-    clip-path: polygon(14% 0, 100% 17%, 82% 100%, 0 72%);
-    transform: rotate(11deg);
-  }
-
-  .leaderboard-section .section-shell {
-    position: relative;
-    z-index: 1;
-  }
-
-  .leaderboard-section .section-intro h2 {
-    color: #202222;
-  }
-
-  .leaderboard-section .section-intro__eyebrow {
-    color: #835027;
-  }
-
-  .leaderboard-section .section-intro__description {
-    color: rgba(31, 33, 33, 0.67);
-  }
-
-  .leaderboard-section__meta {
-    max-width: 245px;
-    padding-bottom: 9px;
-    text-align: right;
-  }
-
-  .leaderboard-section__meta span {
-    display: inline-flex;
-    align-items: center;
-    border: 1px solid rgba(31, 33, 33, 0.2);
-    border-radius: 999px;
-    padding: 8px 11px;
-    color: #313333;
-    font-size: 0.59rem;
-    font-weight: 750;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-  }
-
-  .leaderboard-section__meta p {
-    margin-top: 12px;
-    color: rgba(31, 33, 33, 0.58);
-    font-size: 0.75rem;
-  }
-
-  .leaderboard-section__content {
-    overflow: hidden;
-    border: 1px solid rgba(31, 33, 33, 0.22);
-    border-radius: var(--radius-md);
-    background: rgba(246, 243, 234, 0.2);
-    box-shadow: 20px 25px 55px rgba(38, 39, 38, 0.08);
-  }
-
-  .leaderboard-section__content table {
-    width: 100%;
-    border-collapse: collapse;
-    color: var(--cream);
-  }
-
-  .leaderboard-section__content th,
-  .leaderboard-section__content td {
-    padding: 19px clamp(13px, 2.6vw, 32px);
-    border-bottom: 1px solid rgba(242, 237, 223, 0.08);
-    text-align: right;
-    white-space: nowrap;
-  }
-
-  .leaderboard-section__content th {
-    color: rgba(242, 237, 223, 0.48);
-    font-size: 0.58rem;
-    font-weight: 750;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-  }
-
-  .leaderboard-section__content td {
-    font-family: Consolas, monospace;
-    font-size: 0.78rem;
-  }
-
-  .leaderboard-section__content th:first-child,
-  .leaderboard-section__content th:nth-child(2),
-  .leaderboard-section__content td:first-child,
-  .leaderboard-section__content td:nth-child(2) {
-    text-align: left;
-  }
-
-  .leaderboard-section__content tbody tr {
-    transition: background-color 180ms ease;
-  }
-
-  .leaderboard-section__content tbody tr:hover {
-    background: rgba(255, 255, 255, 0.045);
-  }
-
-  .leaderboard-section__content tbody tr:last-child td {
-    border-bottom: 0;
-  }
-
-  .leaderboard-section__disclaimer {
-    margin-top: 15px;
-    color: rgba(31, 33, 33, 0.5);
-    font-size: 0.69rem;
-    line-height: 1.55;
-    text-align: right;
-  }
-
-  .wallet-section {
-    overflow: hidden;
-    background:
-      radial-gradient(circle at 79% 50%, rgba(154, 108, 255, 0.09), transparent 31rem),
-      linear-gradient(135deg, #17191a, #111213);
-  }
-
-  .wallet-section::before {
-    position: absolute;
-    right: -8%;
-    bottom: -29%;
-    width: 47vw;
-    height: 43vw;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    content: "";
-    background: linear-gradient(145deg, rgba(66, 232, 211, 0.025), transparent);
-    clip-path: polygon(12% 0, 100% 17%, 84% 100%, 0 75%);
-    transform: rotate(-15deg);
-  }
-
-  .wallet-section__layout {
-    position: relative;
-    z-index: 1;
-    display: grid;
-    grid-template-columns: minmax(350px, 0.95fr) minmax(390px, 0.8fr);
-    align-items: center;
-    gap: clamp(60px, 11vw, 150px);
-  }
-
-  .wallet-section__rules {
-    display: grid;
-    gap: 0;
-    max-width: 580px;
-    margin-top: 42px;
-    border-top: 1px solid var(--line);
-  }
-
-  .wallet-section__rules li {
-    display: grid;
-    grid-template-columns: 28px 1fr;
-    gap: 15px;
-    border-bottom: 1px solid var(--line);
-    padding: 18px 0;
-  }
-
-  .wallet-section__rules svg {
-    width: 21px;
-    stroke: var(--cyan);
-    stroke-width: 1.35;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-  }
-
-  .wallet-section__rules span {
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
-    color: rgba(242, 237, 223, 0.5);
-    font-size: 0.74rem;
-    line-height: 1.5;
-  }
-
-  .wallet-section__rules strong {
-    color: var(--cream);
-    font-size: 0.8rem;
-    font-weight: 650;
-  }
-
-  .wallet-console {
-    position: relative;
-    overflow: hidden;
-    border: 1px solid rgba(242, 237, 223, 0.2);
-    border-radius: var(--radius-md);
-    padding: clamp(23px, 3vw, 38px);
-    background:
-      linear-gradient(145deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.015)),
-      rgba(17, 19, 20, 0.74);
-    box-shadow: 0 35px 75px rgba(0, 0, 0, 0.29);
-    backdrop-filter: blur(14px);
-  }
-
-  .wallet-console::before {
-    position: absolute;
-    top: -55px;
-    right: -65px;
-    width: 180px;
-    height: 180px;
-    border: 1px solid rgba(154, 108, 255, 0.15);
-    content: "";
-    clip-path: polygon(17% 0, 100% 15%, 78% 100%, 0 70%);
-    transform: rotate(24deg);
-  }
-
-  .wallet-console__topline {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-    color: rgba(242, 237, 223, 0.42);
-    font-family: Consolas, monospace;
-    font-size: 0.57rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-  }
-
-  .wallet-console__topline > span:last-child {
-    display: flex;
-    align-items: center;
-    gap: 7px;
-  }
-
-  .wallet-console__topline i {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--concrete-500);
-  }
-
-  .wallet-console__topline .is-online {
-    color: var(--green);
-  }
-
-  .wallet-console__topline .is-online i {
-    background: var(--green);
-    box-shadow: 0 0 9px var(--green);
-  }
-
-  .wallet-console__symbol {
-    position: relative;
-    display: grid;
-    width: 112px;
-    height: 112px;
-    place-items: center;
-    margin: 52px auto 44px;
-    border: 1px solid rgba(66, 232, 211, 0.2);
-    border-radius: 50%;
-  }
-
-  .wallet-console__symbol::before,
-  .wallet-console__symbol::after {
-    position: absolute;
-    border: 1px solid rgba(154, 108, 255, 0.15);
-    border-radius: 50%;
-    content: "";
-  }
-
-  .wallet-console__symbol::before { inset: -13px; }
-  .wallet-console__symbol::after { inset: 13px; }
-
-  .wallet-console__symbol > svg {
-    width: 37px;
-    stroke: var(--cyan);
-    stroke-width: 1.15;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-  }
-
-  .wallet-console__symbol > span {
-    position: absolute;
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: var(--violet);
-    box-shadow: 0 0 10px var(--violet);
-  }
-
-  .wallet-console__symbol > span:nth-of-type(1) { top: 3px; right: 15px; }
-  .wallet-console__symbol > span:nth-of-type(2) { bottom: 8px; left: 8px; background: var(--green); }
-
-  .wallet-console__status {
-    display: flex;
-    flex-direction: column;
-    gap: 7px;
-    margin-bottom: 22px;
-    border-top: 1px solid var(--line);
-    padding-top: 18px;
-  }
-
-  .wallet-console__status span {
-    color: rgba(242, 237, 223, 0.4);
-    font-size: 0.58rem;
-    font-weight: 700;
-    letter-spacing: 0.13em;
-    text-transform: uppercase;
-  }
-
-  .wallet-console__status strong {
-    overflow: hidden;
-    color: var(--cream);
-    font-family: Consolas, monospace;
-    font-size: 0.82rem;
-    font-weight: 600;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-
-  .wallet-console__error {
-    margin-top: 12px;
-    border-left: 2px solid var(--danger);
-    padding: 7px 10px;
-    color: #ffaaa3;
-    background: rgba(255, 121, 111, 0.06);
-    font-size: 0.72rem;
-    line-height: 1.5;
-  }
-
-  .wallet-console__notice {
-    margin-top: 16px;
-    color: rgba(242, 237, 223, 0.39);
-    font-size: 0.65rem;
-    line-height: 1.55;
-    text-align: center;
-  }
-
-  .wallet-console .wallet-adapter-button,
-  .wallet-console .wallet-adapter-button-trigger {
-    display: inline-flex;
-    width: 100%;
-    min-height: 48px;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid var(--orange-light);
-    border-radius: var(--radius-sm);
-    padding-inline: 18px;
-    color: #151616;
-    background: var(--orange-light);
-    font-family: inherit;
-    font-size: 0.72rem;
-    font-weight: 750;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-
   .faq-section {
     overflow: hidden;
     color: #202222;
@@ -2436,7 +2522,6 @@
       transform: rotate(-13deg) scale(0.86);
     }
 
-    .wallet-section__layout,
     .faq-section__layout {
       gap: 70px;
     }
@@ -2534,7 +2619,6 @@
     }
 
     .story-section__layout,
-    .wallet-section__layout,
     .faq-section__layout {
       grid-template-columns: 1fr;
     }
@@ -2582,15 +2666,6 @@
     .feature--power h3,
     .feature--power p {
       max-width: 63%;
-    }
-
-    .wallet-section__copy {
-      max-width: 670px;
-    }
-
-    .wallet-console {
-      width: min(100%, 560px);
-      justify-self: center;
     }
 
     .faq-section__heading {
@@ -2670,7 +2745,6 @@
     }
 
     .game-section__heading,
-    .leaderboard-section__heading,
     .features-section__heading,
     .controls-section__header {
       align-items: start;
@@ -2679,8 +2753,7 @@
     }
 
     .game-section__status,
-    .features-section__aside,
-    .leaderboard-section__meta {
+    .features-section__aside {
       padding-bottom: 0;
       text-align: left;
     }
@@ -2772,15 +2845,6 @@
       max-width: 61%;
     }
 
-    .leaderboard-section__content {
-      overflow: hidden;
-    }
-
-    .leaderboard-section__content table {
-      min-width: 620px;
-    }
-
-    .wallet-section__layout,
     .faq-section__layout {
       gap: 65px;
     }
@@ -2928,16 +2992,6 @@
       height: 100px;
     }
 
-    .wallet-console__topline {
-      align-items: flex-start;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .wallet-console__symbol {
-      margin-block: 45px 38px;
-    }
-
     .faq-list summary {
       min-height: 84px;
       grid-template-columns: 1fr 32px;
@@ -2997,5 +3051,30 @@
       --line-bright: rgba(242, 237, 223, 0.48);
       --muted: rgba(242, 237, 223, 0.78);
     }
+  }
+}
+
+@layer components {
+  .brand-mark__type span:last-child {
+    color: var(--cyan);
+  }
+}
+
+@layer sections {
+  .hero h1 .hero__title-run {
+    color: rgba(154, 108, 255, 0.08);
+    -webkit-text-stroke-color: var(--cyan);
+    text-shadow: 16px 13px 0 rgba(220, 139, 66, 0.13);
+  }
+
+  .hero-character__frame {
+    border-color: rgba(110, 236, 255, 0.22);
+    background: linear-gradient(145deg, rgba(154, 108, 255, 0.12), rgba(15, 16, 17, 0.55));
+    box-shadow: 28px 30px 0 rgba(243, 181, 103, 0.055), 0 35px 90px rgba(0, 0, 0, 0.4);
+    transform: rotate(2.4deg) skewY(-0.7deg);
+  }
+
+  .hero-character__image-wrap img {
+    filter: contrast(1.05) saturate(0.9);
   }
 }

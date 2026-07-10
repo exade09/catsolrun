@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { useWalletModal } from '@solana/wallet-adapter-react-ui'
 import { audioSystem } from '../systems/audio'
 import { useGameStore } from '../../stores/gameStore'
 import { SoundIcon, SolMark } from './GameIcons'
@@ -8,7 +7,6 @@ export function MainMenu() {
   const startRun = useGameStore((state) => state.startRun)
   const audioEnabled = useGameStore((state) => state.audioEnabled)
   const bestScore = useGameStore((state) => state.bestScore)
-  const { setVisible: setWalletModalVisible } = useWalletModal()
   const [showInstructions, setShowInstructions] = useState(false)
 
   const start = (): void => {
@@ -39,14 +37,13 @@ export function MainMenu() {
       <div className="menu-lockup">
         <span className="menu-sol"><SolMark /></span>
         <p className="game-eyebrow">THE SIGNAL IS LIVE</p>
-        <h2>SOL CAT RUN</h2>
+        <h2>MEOWAVE</h2>
         <p>Catch the rhythm. Outrun the fading signal.</p>
       </div>
       {bestScore > 0 && <p className="menu-best"><span>PERSONAL BEST</span>{bestScore.toLocaleString('en-US')}</p>}
       <div className="menu-actions">
         <button className="game-button game-button-primary" type="button" onClick={start}>Start Run</button>
         <button className="game-button" type="button" onClick={() => setShowInstructions(true)}>How to Play</button>
-        <button className="game-button" type="button" onClick={() => setWalletModalVisible(true)}>Connect Wallet</button>
         <button className="game-icon-button menu-audio" type="button" onClick={() => void audioSystem.toggle()} aria-label={audioEnabled ? 'Turn audio off' : 'Turn audio on'}>
           <SoundIcon muted={!audioEnabled} />
           <span>Audio {audioEnabled ? 'On' : 'Off'}</span>

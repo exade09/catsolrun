@@ -1,5 +1,5 @@
 {
-  "name": "sol-cat-run",
+  "name": "meowave",
   "private": true,
   "version": "1.0.0",
   "type": "module",
@@ -14,11 +14,6 @@
     "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^9.6.1",
     "@react-three/rapier": "^2.1.0",
-    "@solana/wallet-adapter-base": "^0.9.27",
-    "@solana/wallet-adapter-react": "^0.15.39",
-    "@solana/wallet-adapter-react-ui": "^0.9.39",
-    "@solana/wallet-standard-wallet-adapter-react": "^1.1.5",
-    "@solana/web3.js": "^1.98.4",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
     "three": "^0.185.1",

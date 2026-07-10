@@ -77,7 +77,7 @@ export function GameCanvas() {
 
   if (!webGLAvailable) {
     return (
-      <div className="sol-cat-game" id="game-runner">
+      <div className="meowave-game" id="game-runner">
         <div className="sol-game-fallback" role="alert">
           <div>
             <p className="game-eyebrow">WEBGL UNAVAILABLE</p>
@@ -91,10 +91,10 @@ export function GameCanvas() {
 
   return (
     <section
-      className="sol-cat-game"
+      className="meowave-game"
       id="game-runner"
       data-game-input
-      aria-label="SOL CAT RUN playable 3D endless runner"
+      aria-label="MEOWAVE playable 3D endless runner"
     >
       <GameCanvasErrorBoundary>
         <div className="game-canvas-shell">

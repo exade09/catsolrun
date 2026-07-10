@@ -2,6 +2,7 @@ node_modules/
 dist/
 .agents/
 /image.png
+/cat-pose-*.png
 .env
 .env.local
 .vercel/

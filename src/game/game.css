@@ -1,4 +1,4 @@
-.sol-cat-game {
+.meowave-game {
   --game-cyan: #14f1d9;
   --game-purple: #9945ff;
   --game-green: #7dff86;
@@ -19,7 +19,7 @@
   user-select: none;
 }
 
-.sol-cat-game::after {
+.meowave-game::after {
   position: absolute;
   z-index: 2;
   inset: 0;
@@ -30,7 +30,7 @@
   mix-blend-mode: soft-light;
 }
 
-.sol-cat-game canvas {
+.meowave-game canvas {
   position: absolute !important;
   inset: 0;
   width: 100% !important;
@@ -617,7 +617,7 @@
 }
 
 @media (max-width: 720px) {
-  .sol-cat-game {
+  .meowave-game {
     min-height: min(78vh, 43rem);
     border-radius: 1rem;
   }
@@ -648,7 +648,7 @@
 }
 
 @media (max-height: 560px) and (orientation: landscape) {
-  .sol-cat-game { min-height: 30rem; }
+  .meowave-game { min-height: 30rem; }
   .menu-overlay { align-items: flex-end; justify-content: center; padding: 1rem 2rem; }
   .menu-lockup { max-width: 44%; }
   .menu-lockup h2 { font-size: 3.6rem; }
@@ -663,9 +663,9 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .sol-cat-game *,
-  .sol-cat-game *::before,
-  .sol-cat-game *::after {
+  .meowave-game *,
+  .meowave-game *::before,
+  .meowave-game *::after {
     scroll-behavior: auto !important;
     animation-duration: 1ms !important;
     animation-iteration-count: 1 !important;
