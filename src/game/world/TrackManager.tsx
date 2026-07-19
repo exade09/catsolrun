@@ -5,6 +5,7 @@ import { GAME_CONFIG } from '../config/gameConfig'
 import type { PlayerRuntime, TrackEntity } from '../types/game'
 import { SEGMENTS } from './segmentData'
 import { TrackSegment, type TrackSegmentHandle } from './TrackSegment'
+import { SCENERY_VARIANT_COUNT } from './TrackScenery'
 
 interface TrackManagerProps {
   phase: string
@@ -55,6 +56,11 @@ export function TrackManager({
       if (absoluteStart < distance.current - GAME_CONFIG.segmentLength) absoluteStart += totalLength
       const segmentAhead = absoluteStart - distance.current
       handle.group.position.z = GAME_CONFIG.playerZ - segmentAhead
+      const cycleIndex = Math.floor(absoluteStart / totalLength)
+      const sceneryVariant = ((cycleIndex + segmentIndex) % SCENERY_VARIANT_COUNT + SCENERY_VARIANT_COUNT) % SCENERY_VARIANT_COUNT
+      handle.sceneryVariants.forEach((variantGroup, variant) => {
+        variantGroup.visible = variant === sceneryVariant
+      })
 
       segment.entities.forEach((entity, entityIndex) => {
         const entityGroup = handle.entityGroups.get(entity.id)
