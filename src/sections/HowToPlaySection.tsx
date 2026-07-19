@@ -12,28 +12,28 @@ const controls: ControlItem[] = [
   {
     icon: "lanes",
     label: "Switch lanes",
-    description: "Read ahead and move into a clear line.",
+    description: "Read ahead and move into a clear line",
     keys: ["A", "D", "Left", "Right"],
   },
   {
     icon: "arrow-up",
     label: "Jump",
-    description: "Clear walls, gaps, and low hazards.",
+    description: "Clear walls, gaps, and low hazards",
     keys: ["W", "Space", "Up"],
   },
   {
     icon: "arrow-down",
     label: "Slide",
-    description: "Duck below gates and high barriers.",
+    description: "Duck below gates and high barriers",
     keys: ["S", "Down"],
   },
 ];
 
 const runSkills = [
-  { icon: "coin" as const, title: "Collect SOL", text: "Trace pickup lines to raise your score." },
-  { icon: "spark" as const, title: "Build combos", text: "Keep collecting without breaking the trail." },
-  { icon: "shield" as const, title: "Use power-ups", text: "Turn a tight route into a smart advantage." },
-  { icon: "speed" as const, title: "Stay readable", text: "Watch silhouettes and react to warning pulses." },
+  { icon: "coin" as const, title: "Collect SOL", text: "Trace pickup lines to raise your score" },
+  { icon: "spark" as const, title: "Build combos", text: "Keep collecting without breaking the trail" },
+  { icon: "shield" as const, title: "Use power-ups", text: "Turn a tight route into a smart advantage" },
+  { icon: "speed" as const, title: "Stay readable", text: "Watch silhouettes and react to warning pulses" },
 ];
 
 export function HowToPlaySection() {
@@ -43,13 +43,13 @@ export function HowToPlaySection() {
         <div className="controls-section__header">
           <SectionIntro
             eyebrow="How to play"
-            title={<>Move on instinct.<br />Plan one beat ahead.</>}
-            description="Keyboard, arrows, or touch gestures - the same compact move set works everywhere."
+            title={<>Move on instinct<br />Plan one beat ahead</>}
+            description="Keyboard, arrows, or touch gestures - the same compact move set works everywhere"
             id="controls-title"
           />
           <div className="controls-section__swipe" aria-label="Touch controls supported">
             <span className="controls-section__swipe-track" aria-hidden="true"><i /></span>
-            <span><strong>On touch</strong>Swipe in the direction you want to move.</span>
+            <span><strong>On touch</strong>Swipe in the direction you want to move</span>
           </div>
         </div>
 

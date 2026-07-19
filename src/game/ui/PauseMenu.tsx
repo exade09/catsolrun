@@ -22,7 +22,7 @@ export function PauseMenu() {
         <button className="game-button" type="button" onClick={toggleReducedMotion}>Reduced Motion: {reducedMotion ? 'On' : 'Off'}</button>
         <button className="game-button game-button-quiet" type="button" onClick={returnToMenu}>Return to Menu</button>
       </div>
-      <p>Press P or Escape to resume.</p>
+      <p>Press P or Escape to resume</p>
     </div>
   )
 }

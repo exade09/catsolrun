@@ -9,15 +9,15 @@ export function Footer() {
         <a href="#top" className="site-footer__brand">
           <BrandMark />
         </a>
-        <p>A tiny runner chasing a very large signal.</p>
+        <p>A tiny runner chasing a very large signal</p>
         <a className="site-footer__back" href="#top">
           Back to top <span aria-hidden="true">/</span>
         </a>
       </div>
       <div className="site-footer__line" />
       <div className="site-footer__bottom">
-        <p>&copy; {year} MEOWAVE. Built for play.</p>
-        <p>In-game SOL is a gameplay collectible.</p>
+        <p>&copy; {year} MEOWAVE. Built for play</p>
+        <p>In-game SOL is a gameplay collectible</p>
         <nav aria-label="Footer navigation">
           <a href="#game">Game</a>
           <a href="#story">Story</a>

@@ -156,8 +156,17 @@ export function TrackManager({
 
   return (
     <group>
+      <mesh receiveShadow position={[0, -0.24, -45]} scale={[18, 0.16, 110]}>
+        <boxGeometry />
+        <meshStandardMaterial color="#111620" roughness={0.98} flatShading />
+      </mesh>
       {SEGMENTS.map((definition, index) => (
-        <TrackSegment key={definition.id} ref={segmentRefs[index]} definition={definition} />
+        <TrackSegment
+          key={definition.id}
+          ref={segmentRefs[index]}
+          definition={definition}
+          initialPositionZ={GAME_CONFIG.playerZ - index * GAME_CONFIG.segmentLength}
+        />
       ))}
     </group>
   )

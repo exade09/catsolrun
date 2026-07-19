@@ -28,10 +28,10 @@ export function Hero({
             <span aria-hidden="true">MEO</span>
             <span className="hero__title-run" aria-hidden="true">WAVE</span>
           </h1>
-          <p className="hero__tagline">Ride the wave. Catch the rhythm. Collect every SOL.</p>
+          <p className="hero__tagline">Ride the wave. Catch the rhythm. Collect every SOL</p>
           <p className="hero__description">
             Guide a headphone-wearing cat through a shifting geometric signal. Find the clean
-            line, build the combo, and keep the beat alive.
+            line, build the combo, and keep the beat alive
           </p>
 
           <div className="hero__actions">

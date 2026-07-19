@@ -12,7 +12,7 @@ async function readError(response: Response): Promise<string> {
   } catch {
     // The API may be unavailable before the Vercel database is connected.
   }
-  return 'The leaderboard is temporarily unavailable.'
+  return 'The leaderboard is temporarily unavailable'
 }
 
 export async function fetchLeaderboard(playerId: string, signal?: AbortSignal): Promise<LeaderboardResponse> {

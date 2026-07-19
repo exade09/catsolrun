@@ -46,7 +46,7 @@ export function MainMenu() {
         <span className="menu-sol"><SolMark /></span>
         <p className="game-eyebrow">NEW RUNNER DETECTED</p>
         <h3 id="nickname-title">Choose your nickname</h3>
-        <p className="nickname-copy">This name will identify your best run on the global leaderboard.</p>
+        <p className="nickname-copy">This name will identify your best run on the global leaderboard</p>
         <form className="nickname-form" onSubmit={saveNicknameAndStart}>
           <label htmlFor="runner-nickname">Runner nickname</label>
           <input
@@ -91,7 +91,7 @@ export function MainMenu() {
           <span><kbd>S</kbd><b>Slide</b></span>
           <span><kbd>P</kbd><b>Pause</b></span>
         </div>
-        <p>Swipe on the game to move on touch devices. Follow warning arrows, chain SOL pickups, and use signal power-ups.</p>
+        <p>Swipe on the game to move on touch devices. Follow warning arrows, chain SOL pickups, and use signal power-ups</p>
         <button className="game-button game-button-primary" type="button" onClick={() => setShowInstructions(false)}>Back to menu</button>
       </div>
     )
@@ -103,7 +103,7 @@ export function MainMenu() {
         <span className="menu-sol"><SolMark /></span>
         <p className="game-eyebrow">THE SIGNAL IS LIVE</p>
         <h2>MEOWAVE</h2>
-        <p>Catch the rhythm. Outrun the fading signal.</p>
+        <p>Catch the rhythm. Outrun the fading signal</p>
       </div>
       {bestScore > 0 && <p className="menu-best"><span>PERSONAL BEST</span>{bestScore.toLocaleString('en-US')}</p>}
       <div className="menu-player">
@@ -127,7 +127,7 @@ export function MainMenu() {
           <span>Audio {audioEnabled ? 'On' : 'Off'}</span>
         </button>
       </div>
-      <p className="collectible-notice">In-game SOL is a gameplay collectible and does not represent real cryptocurrency.</p>
+      <p className="collectible-notice">In-game SOL is a gameplay collectible and does not represent real cryptocurrency</p>
     </div>
   )
 }

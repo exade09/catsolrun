@@ -229,28 +229,34 @@ function SceneryPiece({ definition, palette }: { definition: SceneryPieceDefinit
 }
 
 function TunnelRibs({ seed, palette }: { seed: number; palette: SceneryPalette }) {
-  const shift = (seed % 3) * 0.55
+  const offset = 10 + ((seed % 3) - 1) * 1.15
   return (
-    <>
-      {[4.2 + shift, 11 + shift, 17.8 + shift].map((offset, index) => (
-        <group key={offset} position={[0, 0, -offset]}>
-          {[-1, 1].map((side) => (
-            <mesh key={side} castShadow position={[side * 4.92, 2.15, 0]} scale={[0.18, 2.2, 0.22]}>
-              <boxGeometry />
-              <meshStandardMaterial color={palette.structure} roughness={0.74} flatShading />
-            </mesh>
-          ))}
-          <mesh castShadow position={[0, 4.28, 0]} scale={[10.02, 0.18, 0.22]}>
+    <group position={[0, 0, -offset]}>
+      {[-1, 1].map((side) => (
+        <group key={side} position={[side * 4.82, 0, 0]}>
+          <mesh castShadow position={[0, 1.82, 0]} scale={[0.28, 3.64, 0.34]}>
+            <boxGeometry />
+            <meshStandardMaterial color={palette.structure} roughness={0.74} flatShading />
+          </mesh>
+          <mesh castShadow position={[0, 0.11, 0]} scale={[0.72, 0.22, 0.72]}>
+            <boxGeometry />
+            <meshStandardMaterial color={palette.highlight} roughness={0.78} flatShading />
+          </mesh>
+          <mesh castShadow position={[0, 3.55, 0]} scale={[0.58, 0.28, 0.52]}>
             <boxGeometry />
             <meshStandardMaterial color={palette.highlight} roughness={0.7} flatShading />
           </mesh>
-          <mesh position={[0, 4.05, 0]} scale={[8.9, 0.045, 0.05]}>
-            <boxGeometry />
-            <meshBasicMaterial color={index % 2 ? palette.accent : palette.highlight} toneMapped={false} />
-          </mesh>
         </group>
       ))}
-    </>
+      <mesh castShadow position={[0, 3.82, 0]} scale={[10.18, 0.34, 0.4]}>
+        <boxGeometry />
+        <meshStandardMaterial color={palette.highlight} roughness={0.7} flatShading />
+      </mesh>
+      <mesh position={[0, 3.62, 0.23]} scale={[8.95, 0.055, 0.055]}>
+        <boxGeometry />
+        <meshBasicMaterial color={palette.accent} toneMapped={false} />
+      </mesh>
+    </group>
   )
 }
 
@@ -261,12 +267,6 @@ export function TrackScenery({ environment, seed }: TrackSceneryProps) {
 
   return (
     <group>
-      {[-1, 1].map((side) => (
-        <mesh key={side} receiveShadow position={[side * 6.85, -0.22, -10]} scale={[4.45, 0.12, 20]}>
-          <boxGeometry />
-          <meshStandardMaterial color={palette.ground} roughness={0.96} flatShading />
-        </mesh>
-      ))}
       {layout.map((piece, index) => (
         <SceneryPiece key={`${piece.kind}-${index}`} definition={piece} palette={palette} />
       ))}

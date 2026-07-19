@@ -93,7 +93,7 @@ function App() {
               fallback={(
                 <div className="game-module-loading" role="status" aria-live="polite">
                   <span className="game-module-loading__signal" aria-hidden="true" />
-                  <p>Loading the 3D runner...</p>
+                  <p>Loading the 3D runner</p>
                 </div>
               )}
             >

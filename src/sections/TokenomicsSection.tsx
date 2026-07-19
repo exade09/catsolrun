@@ -20,12 +20,12 @@ export function TokenomicsSection() {
         <div className="tokenomics-section__copy">
           <SectionIntro
             eyebrow="Tokenomics"
-            title={<>One signal.<br />A billion waves.</>}
-            description="A compact snapshot of the Meowave token architecture on Solana. Clear numbers, no fictional chain metrics."
+            title={<>One signal<br />A billion waves</>}
+            description="A compact snapshot of the Meowave token architecture on Solana. Clear numbers, no fictional chain metrics"
             id="tokenomics-title"
           />
           <p className="tokenomics-section__note">
-            Token information is provided for project reference. In-game SOL remains a gameplay collectible and is not a cryptocurrency reward.
+            Token information is provided for project reference. In-game SOL remains a gameplay collectible and is not a cryptocurrency reward
           </p>
         </div>
 

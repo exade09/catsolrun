@@ -15,6 +15,7 @@ export interface TrackSegmentHandle {
 
 interface TrackSegmentProps {
   definition: SegmentDefinition
+  initialPositionZ: number
 }
 
 function EntityVisual({ entity }: { entity: TrackEntity }) {
@@ -54,7 +55,7 @@ function createRoadGeometry(seed: number): THREE.BufferGeometry {
 }
 
 export const TrackSegment = forwardRef<TrackSegmentHandle, TrackSegmentProps>(function TrackSegment(
-  { definition },
+  { definition, initialPositionZ },
   forwardedRef,
 ) {
   const group = useRef<THREE.Group>(null)
@@ -73,7 +74,7 @@ export const TrackSegment = forwardRef<TrackSegmentHandle, TrackSegmentProps>(fu
   const edgeColor = definition.environment === 'tunnel' ? COLORS.purple : definition.environment === 'dataway' ? COLORS.cyan : '#ff4fd8'
 
   return (
-    <group ref={group}>
+    <group ref={group} position={[0, 0, initialPositionZ]}>
       <mesh receiveShadow position={[0, -0.13, -GAME_CONFIG.segmentLength / 2]} scale={[ROAD_WIDTH, 0.14, GAME_CONFIG.segmentLength]}>
         <boxGeometry />
         <meshStandardMaterial

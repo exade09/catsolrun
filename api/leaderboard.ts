@@ -105,19 +105,19 @@ async function readLeaderboard(sql: Sql, currentPlayerId: string | null): Promis
 }
 
 function parseSubmission(value: unknown): { submission?: RunSubmission; error?: string } {
-  if (!value || typeof value !== 'object') return { error: 'Invalid run payload.' }
+  if (!value || typeof value !== 'object') return { error: 'Invalid run payload' }
   const body = value as Partial<RunSubmission>
   if (typeof body.playerId !== 'string' || !PLAYER_ID_PATTERN.test(body.playerId)) {
-    return { error: 'Invalid player profile.' }
+    return { error: 'Invalid player profile' }
   }
-  if (typeof body.nickname !== 'string') return { error: 'A nickname is required.' }
+  if (typeof body.nickname !== 'string') return { error: 'A nickname is required' }
   const nicknameError = getNicknameError(body.nickname)
   if (nicknameError) return { error: nicknameError }
   if (!Number.isInteger(body.distance) || (body.distance ?? -1) < 0 || (body.distance ?? 0) > 10_000_000) {
-    return { error: 'Invalid run distance.' }
+    return { error: 'Invalid run distance' }
   }
   if (!Number.isInteger(body.sol) || (body.sol ?? -1) < 0 || (body.sol ?? 0) > 10_000_000) {
-    return { error: 'Invalid SOL count.' }
+    return { error: 'Invalid SOL count' }
   }
   return {
     submission: {
@@ -132,7 +132,7 @@ function parseSubmission(value: unknown): { submission?: RunSubmission; error?: 
 export default {
   async fetch(request: Request): Promise<Response> {
     const sql = getDatabase()
-    if (!sql) return json({ error: 'Leaderboard database is not connected yet.' }, 503)
+    if (!sql) return json({ error: 'Leaderboard database is not connected yet' }, 503)
 
     try {
       await ensureSchema(sql)
@@ -145,7 +145,7 @@ export default {
 
       if (request.method === 'POST') {
         const parsed = parseSubmission(await request.json().catch(() => null))
-        if (!parsed.submission) return json({ error: parsed.error ?? 'Invalid run payload.' }, 400)
+        if (!parsed.submission) return json({ error: parsed.error ?? 'Invalid run payload' }, 400)
         const { playerId, nickname, distance, sol } = parsed.submission
         await sql`
           INSERT INTO meowave_leaderboard (player_id, nickname, best_distance, best_sol)
@@ -164,10 +164,10 @@ export default {
         return json(await readLeaderboard(sql, playerId), 201)
       }
 
-      return json({ error: 'Method not allowed.' }, 405, { Allow: 'GET, POST' })
+      return json({ error: 'Method not allowed' }, 405, { Allow: 'GET, POST' })
     } catch (error) {
       console.error('Leaderboard request failed.', error)
-      return json({ error: 'The leaderboard is temporarily unavailable.' }, 500)
+      return json({ error: 'The leaderboard is temporarily unavailable' }, 500)
     }
   },
 }

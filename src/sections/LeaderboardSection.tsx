@@ -62,8 +62,8 @@ export function LeaderboardSection() {
         <div className="leaderboard-section__copy">
           <SectionIntro
             eyebrow="Global leaderboard"
-            title={<>Twenty runners.<br />One clean line.</>}
-            description="The fastest signals are ranked by their best distance. Every finished run also records the in-game SOL collected along the way."
+            title={<>Twenty runners<br />One clean line</>}
+            description="The fastest signals are ranked by their best distance. Every finished run also records the in-game SOL collected along the way"
             id="leaderboard-title"
           />
           <div className="leaderboard-profile">
@@ -88,7 +88,7 @@ export function LeaderboardSection() {
             <div className="leaderboard-state">
               <Icon name="pulse" />
               <strong>Leaderboard signal is warming up</strong>
-              <p>The game remains playable. Rankings will appear as soon as the Neon database is connected.</p>
+              <p>The game remains playable. Rankings will appear as soon as the Neon database is connected</p>
               <button className="button button--ghost" type="button" onClick={() => void loadLeaderboard()}>Try again</button>
             </div>
           )}
@@ -97,7 +97,7 @@ export function LeaderboardSection() {
             <div className="leaderboard-state">
               <Icon name="speed" />
               <strong>The first line is still open</strong>
-              <p>Finish a run to become the first signal on the board.</p>
+              <p>Finish a run to become the first signal on the board</p>
               <a className="button button--primary" href="#game">Start a run</a>
             </div>
           )}

@@ -7,11 +7,11 @@ export function FeaturesSection() {
         <div className="features-section__heading">
           <SectionIntro
             eyebrow="Built for flow"
-            title={<>A small move set.<br />A deep run.</>}
-            description="Every system is tuned around legibility, rhythm, and that one-more-run feeling."
+            title={<>A small move set<br />A deep run</>}
+            description="Every system is tuned around legibility, rhythm, and that one-more-run feeling"
             id="features-title"
           />
-          <p className="features-section__aside">No downloads. No transaction. Just press play.</p>
+          <p className="features-section__aside">No downloads. No transaction. Just press play</p>
         </div>
 
         <div className="feature-grid">
@@ -19,7 +19,7 @@ export function FeaturesSection() {
             <div className="feature__copy">
               <span className="feature__number">01</span>
               <h3>The world builds ahead</h3>
-              <p>Modular routes assemble into concrete plazas, tunnels, and signal corridors as you move.</p>
+              <p>Modular routes assemble into concrete plazas, tunnels, and signal corridors as you move</p>
             </div>
             <div className="route-art" aria-hidden="true">
               <span className="route-art__sun" />
@@ -38,7 +38,7 @@ export function FeaturesSection() {
               <span><Icon name="pulse" /></span>
             </div>
             <h3>Power in the pocket</h3>
-            <p>Magnetize SOL, absorb a hit, slow time, or push the score multiplier into overdrive.</p>
+            <p>Magnetize SOL, absorb a hit, slow time, or push the score multiplier into overdrive</p>
           </article>
 
           <article className="feature feature--rhythm">
@@ -47,14 +47,14 @@ export function FeaturesSection() {
               {Array.from({ length: 14 }, (_, index) => <i key={index} />)}
             </div>
             <h3>The route has a pulse</h3>
-            <p>Reactive lights, restrained audio cues, and pickup patterns make the safest line feel musical.</p>
+            <p>Reactive lights, restrained audio cues, and pickup patterns make the safest line feel musical</p>
           </article>
 
           <article className="feature feature--adaptive">
             <div className="feature__copy">
               <span className="feature__number">04</span>
               <h3>Fast where it matters</h3>
-              <p>Adaptive quality, lightweight geometry, touch controls, and reduced-motion support keep the run focused across devices.</p>
+              <p>Adaptive quality, lightweight geometry, touch controls, and reduced-motion support keep the run focused across devices</p>
             </div>
             <div className="adaptive-art" aria-hidden="true">
               <span className="adaptive-art__desktop"><i /></span>

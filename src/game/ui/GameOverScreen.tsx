@@ -38,7 +38,7 @@ export function GameOverScreen() {
   }
 
   const share = async (): Promise<void> => {
-    const text = `I scored ${finalStats.score.toLocaleString('en-US')} in MEOWAVE and collected ${finalStats.sol} in-game SOL.`
+    const text = `I scored ${finalStats.score.toLocaleString('en-US')} in MEOWAVE and collected ${finalStats.sol} in-game SOL`
     try {
       if (navigator.share) await navigator.share({ title: 'MEOWAVE', text, url: window.location.href })
       else {
@@ -63,16 +63,16 @@ export function GameOverScreen() {
         <span><b>{bestScore.toLocaleString('en-US')}</b><small>Best Score</small></span>
       </div>
       <p className={`leaderboard-sync is-${syncStatus}`}>
-        {syncStatus === 'saving' && 'Sending run to the leaderboard...'}
-        {syncStatus === 'saved' && `Best run synced for ${nickname}.`}
-        {syncStatus === 'failed' && 'Run saved locally. Leaderboard sync will return when the database is online.'}
+        {syncStatus === 'saving' && 'Sending run to the leaderboard'}
+        {syncStatus === 'saved' && `Best run synced for ${nickname}`}
+        {syncStatus === 'failed' && 'Run saved locally. Leaderboard sync will return when the database is online'}
       </p>
       <div className="menu-actions gameover-actions">
         <button className="game-button game-button-primary" type="button" onClick={retry}>Retry</button>
         <button className="game-button" type="button" onClick={() => void share()}>{shareStatus}</button>
         <button className="game-button game-button-quiet" type="button" onClick={returnToMenu}>Return to Menu</button>
       </div>
-      <p className="collectible-notice">In-game SOL is a gameplay collectible and does not represent real cryptocurrency.</p>
+      <p className="collectible-notice">In-game SOL is a gameplay collectible and does not represent real cryptocurrency</p>
     </div>
   )
 }

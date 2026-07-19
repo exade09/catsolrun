@@ -32,8 +32,8 @@ class GameCanvasErrorBoundary extends Component<GameCanvasErrorBoundaryProps, Ga
         <div className="sol-game-fallback" role="alert">
           <div>
             <p className="game-eyebrow">3D SIGNAL INTERRUPTED</p>
-            <h3>The runner could not start.</h3>
-            <p>The rest of the site is still available. Reload the game after checking that hardware acceleration is enabled.</p>
+            <h3>The runner could not start</h3>
+            <p>The rest of the site is still available. Reload the game after checking that hardware acceleration is enabled</p>
             <button className="game-button game-button-primary" type="button" onClick={() => window.location.reload()}>Reload Game</button>
           </div>
         </div>
@@ -81,8 +81,8 @@ export function GameCanvas() {
         <div className="sol-game-fallback" role="alert">
           <div>
             <p className="game-eyebrow">WEBGL UNAVAILABLE</p>
-            <h3>This browser cannot open the 3D runner.</h3>
-            <p>Enable hardware acceleration or try a current browser with WebGL support. You can still explore every other part of the site.</p>
+            <h3>This browser cannot open the 3D runner</h3>
+            <p>Enable hardware acceleration or try a current browser with WebGL support. You can still explore every other part of the site</p>
           </div>
         </div>
       </div>

@@ -30,7 +30,7 @@ export function StorySection() {
             <Icon name="headphones" />
             <span>
               <strong>Always listening</strong>
-              An old player. A new frequency.
+              An old player. A new frequency
             </span>
           </div>
           <span className="story-visual__facet story-visual__facet--one" aria-hidden="true" />
@@ -40,23 +40,23 @@ export function StorySection() {
         <div className="story-section__copy">
           <SectionIntro
             eyebrow="The signal"
-            title={<>A quiet cat.<br />A world turned loud.</>}
+            title={<>A quiet cat<br />A world turned loud</>}
             id="story-title"
           />
           <div className="story-section__prose">
             <p>
               Every day, the cat sat beside a forgotten portable player, listening to the same
-              worn tape and watching the concrete world drift by.
+              worn tape and watching the concrete world drift by
             </p>
             <p>
               Then, one night, a Solana signal entered the headphones. It opened a geometric
               world built from rhythm, speed, and glowing fragments. Now Meowave runs through
-              the chain, collecting lost SOL notes before the signal fades.
+              the chain, collecting lost SOL notes before the signal fades
             </p>
           </div>
           <blockquote>
             <span aria-hidden="true">&quot;</span>
-            The route changes. The beat remembers.
+            The route changes. The beat remembers
           </blockquote>
           <dl className="story-section__traits">
             <div><dt>Temper</dt><dd>Calm</dd></div>

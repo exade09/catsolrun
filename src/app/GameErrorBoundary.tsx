@@ -30,9 +30,9 @@ export class GameErrorBoundary extends Component<
         <div className="game-fallback" role="alert">
           <span className="game-fallback__signal" aria-hidden="true" />
           <p className="game-fallback__eyebrow">3D signal interrupted</p>
-          <h2>The game view could not start.</h2>
+          <h2>The game view could not start</h2>
           <p>
-            Try a current browser with WebGL enabled. The rest of the site is still available.
+            Try a current browser with WebGL enabled. The rest of the site is still available
           </p>
           <button className="button button--primary" type="button" onClick={this.retry}>
             Retry 3D View

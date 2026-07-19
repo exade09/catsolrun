@@ -21,7 +21,7 @@ export function LoadingScreen() {
       <div className="loading-track" aria-hidden="true">
         <span style={{ width: `${progress}%` }} />
       </div>
-      <p>Building the dataway...</p>
+      <p>Building the dataway</p>
     </div>
   )
 }

@@ -14,8 +14,8 @@ export function GameSection({ children, status = "Ready when you are", className
         <div className="game-section__heading">
           <SectionIntro
             eyebrow="The run"
-            title={<>Find your line.<br />Keep the signal.</>}
-            description="Three lanes, one clean rhythm, and a route that gets sharper the longer you survive."
+            title={<>Find your line<br />Keep the signal</>}
+            description="Three lanes, one clean rhythm, and a route that gets sharper the longer you survive"
             id="game-title"
           />
           <div className="game-section__status" aria-live="polite">
@@ -38,7 +38,7 @@ export function GameSection({ children, status = "Ready when you are", className
 
         <div className="game-section__notice">
           <span>Transparent by design</span>
-          <p>In-game SOL is a gameplay collectible and does not represent real cryptocurrency.</p>
+          <p>In-game SOL is a gameplay collectible and does not represent real cryptocurrency</p>
         </div>
       </div>
     </section>
