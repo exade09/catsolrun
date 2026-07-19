@@ -11,6 +11,7 @@ import {
   StorySection,
   TokenomicsSection,
 } from './sections'
+import { retryPendingRun } from './leaderboard/leaderboardApi'
 import { useGameStore, type GamePhase } from './stores/gameStore'
 import './app/app.css'
 
@@ -40,6 +41,17 @@ function App() {
     const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
     if (motionQuery.matches) setReducedMotion(true)
   }, [setReducedMotion])
+
+  useEffect(() => {
+    const syncPendingRun = () => {
+      void retryPendingRun().catch(() => {
+        // The queued result remains in local storage for the next online attempt.
+      })
+    }
+    syncPendingRun()
+    window.addEventListener('online', syncPendingRun)
+    return () => window.removeEventListener('online', syncPendingRun)
+  }, [])
 
   useEffect(() => {
     const handleVisibility = () => {
