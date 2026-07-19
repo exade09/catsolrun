@@ -3,6 +3,7 @@ import { createJSONStorage, persist } from 'zustand/middleware'
 
 import { GAME_CONFIG } from '../game/config/gameConfig'
 import type { PowerUpType } from '../game/types/game'
+import { normalizeNickname } from '../leaderboard/types'
 
 export type GamePhase =
   | 'loading'
@@ -44,12 +45,15 @@ export type RunMetricsUpdate = Partial<RunMetrics>
 export interface GameStore extends RunMetrics {
   phase: GamePhase
   countdown: number
+  playerId: string
+  nickname: string
   bestScore: number
   audioEnabled: boolean
   reducedMotion: boolean
   touchControls: boolean
   activePowerUp: ActivePowerUp | null
   finalStats: FinalStats
+  setNickname: (nickname: string) => void
   setPhase: (phase: GamePhase) => void
   setCountdown: (countdown: number) => void
   startRun: () => void
@@ -110,6 +114,15 @@ const wholeNonNegative = (value: number, fallback: number): number =>
 const now = (): number => Date.now()
 let pausedAt: number | null = null
 
+const createPlayerId = (): string => {
+  if (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function') return crypto.randomUUID()
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (character) => {
+    const random = Math.floor(Math.random() * 16)
+    const value = character === 'x' ? random : (random & 0x3) | 0x8
+    return value.toString(16)
+  })
+}
+
 const resumePowerUp = (
   powerUp: ActivePowerUp | null,
   pauseStartedAt: number,
@@ -136,6 +149,8 @@ export const useGameStore = create<GameStore>()(
     (set, get) => ({
       phase: 'loading',
       countdown: 3,
+      playerId: createPlayerId(),
+      nickname: '',
       ...runDefaults(),
       bestScore: 0,
       audioEnabled: true,
@@ -143,6 +158,8 @@ export const useGameStore = create<GameStore>()(
       touchControls: true,
       activePowerUp: null,
       finalStats: EMPTY_FINAL_STATS,
+
+      setNickname: (nickname) => set({ nickname: normalizeNickname(nickname) }),
 
       setPhase: (phase) => set({ phase }),
       setCountdown: (countdown) => set({ countdown: Math.max(0, Math.ceil(countdown)) }),
@@ -366,6 +383,8 @@ export const useGameStore = create<GameStore>()(
       name: 'meowave-settings-v1',
       storage: createJSONStorage(() => localStorage),
       partialize: (state) => ({
+        playerId: state.playerId,
+        nickname: state.nickname,
         bestScore: state.bestScore,
         audioEnabled: state.audioEnabled,
         reducedMotion: state.reducedMotion,

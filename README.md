@@ -10,6 +10,7 @@ Meowave is a browser-based, third-person endless runner starring a custom low-po
 - Smooth three-lane movement, jumping, sliding, keyboard input buffering, mobile swipes, and touch controls.
 - A lightweight procedural cat rebuilt from four local reference poses with faceted orange-and-white markings, a striped tail, collar, and silver headphones.
 - Recycled modular track segments, readable obstacles, SOL pickup trails, five power-ups, combos, near misses, and progressive difficulty.
+- A persisted runner nickname and a global top-20 distance leaderboard backed by Neon Postgres.
 - Synthesized Web Audio music and effects that begin only after user interaction.
 - A custom Meowave favicon and low-poly visual system shared by the header, hero, reference gallery, game, and tokenomics section.
 - Responsive quality scaling, reduced-motion support, keyboard access, local best-score persistence, and an isolated WebGL fallback.
@@ -128,8 +129,10 @@ The opening section uses forgiving patterns. Speed and obstacle complexity incre
 
 Score combines distance, speed, in-game SOL pickups, collection combos, and near-miss bonuses. A collision ends the run unless an active shield absorbs it.
 
-The browser stores only gameplay preferences and the personal best under `meowave-settings-v1`:
+The browser stores the anonymous runner profile, gameplay preferences, and personal best under `meowave-settings-v1`:
 
+- Random player ID
+- Runner nickname
 - Best score
 - Audio preference
 - Reduced-motion preference
@@ -170,8 +173,12 @@ src/
     types/               Shared game and track types
     ui/                  HUD, menus, countdown, and touch controls
     world/               Recycled track segments and environment
+  leaderboard/           Nickname validation, API client, and leaderboard types
+  sections/              Page sections including the global leaderboard
   stores/                Persisted Zustand game state
   styles/                Global responsive low-poly design system
+api/                     Vercel Function for Neon leaderboard reads and writes
+database/                PostgreSQL schema reference
 ```
 
 [`App.tsx`](./src/App.tsx) composes the site and lazy-loads the embedded game. [`GameCanvas.tsx`](./src/game/GameCanvas.tsx) owns WebGL detection and device-aware rendering. [`GameScene.tsx`](./src/game/GameScene.tsx) coordinates the active run. [`TrackManager.tsx`](./src/game/world/TrackManager.tsx) recycles a bounded set of track segments and performs gameplay collision checks. [`gameStore.ts`](./src/stores/gameStore.ts) owns phases, metrics, settings, and persistence without forcing React updates on every frame.
@@ -208,7 +215,13 @@ The repository includes [`vercel.json`](./vercel.json) with the Vite framework, 
 1. Import the repository into Vercel.
 2. Keep the detected framework as Vite.
 3. Use Node.js 24.x.
-4. Deploy without environment variables.
+4. Add the Neon integration for Production, Preview, and Development.
+5. Confirm that the integration created the pooled `DATABASE_URL` environment variable.
+6. Deploy or redeploy the project after connecting the database.
+
+The `/api/leaderboard` Vercel Function creates the required table and ranking index on its first database request. The same statements are available in [`database/schema.sql`](./database/schema.sql) for manual setup or review. A completed run upserts one row per anonymous player profile, preserving that profile's best distance and the in-game SOL collected on that best run.
+
+For local API development, copy `.env.example` to `.env.local`, insert a development connection string, and run `npx vercel dev`. Keep real database credentials out of Git.
 
 The same configuration can be verified locally with:
 

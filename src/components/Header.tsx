@@ -9,6 +9,7 @@ export interface HeaderProps {
 
 const navigation = [
   { label: "Game", href: "#game" },
+  { label: "Leaderboard", href: "#leaderboard" },
   { label: "Story", href: "#story" },
   { label: "How to Play", href: "#how-to-play" },
   { label: "Tokenomics", href: "#tokenomics" },

@@ -7,6 +7,7 @@ import {
   FeaturesSection,
   GameSection,
   HowToPlaySection,
+  LeaderboardSection,
   StorySection,
   TokenomicsSection,
 } from './sections'
@@ -32,6 +33,7 @@ function App() {
   const pauseGame = useGameStore((state) => state.pauseGame)
   const setReducedMotion = useGameStore((state) => state.setReducedMotion)
   const reducedMotion = useGameStore((state) => state.reducedMotion)
+  const nickname = useGameStore((state) => state.nickname)
   const pendingPlayRef = useRef(false)
 
   useEffect(() => {
@@ -50,8 +52,8 @@ function App() {
   useEffect(() => {
     if (phase !== 'menu' || !pendingPlayRef.current) return
     pendingPlayRef.current = false
-    startRun()
-  }, [phase, startRun])
+    if (nickname) startRun()
+  }, [nickname, phase, startRun])
 
   const handlePlay = useCallback(() => {
     void primeGameAudio()
@@ -63,8 +65,9 @@ function App() {
     })
     if (phase === 'loading') pendingPlayRef.current = true
     else if (phase === 'paused') resumeGame()
-    else if (phase === 'menu' || phase === 'gameover') startRun()
-  }, [phase, reducedMotion, resumeGame, startRun])
+    else if (phase === 'menu' && nickname) startRun()
+    else if (phase === 'gameover') startRun()
+  }, [nickname, phase, reducedMotion, resumeGame, startRun])
 
   return (
     <>
@@ -86,6 +89,7 @@ function App() {
             </Suspense>
           </GameErrorBoundary>
         </GameSection>
+        <LeaderboardSection />
         <StorySection />
         <HowToPlaySection />
         <FeaturesSection />

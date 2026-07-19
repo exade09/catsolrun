@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { audioSystem } from '../systems/audio'
 import { useGameStore } from '../../stores/gameStore'
+import { submitRun } from '../../leaderboard/leaderboardApi'
 import { SolMark } from './GameIcons'
 
 export function GameOverScreen() {
@@ -8,7 +9,28 @@ export function GameOverScreen() {
   const bestScore = useGameStore((state) => state.bestScore)
   const restartRun = useGameStore((state) => state.restartRun)
   const returnToMenu = useGameStore((state) => state.returnToMenu)
+  const playerId = useGameStore((state) => state.playerId)
+  const nickname = useGameStore((state) => state.nickname)
   const [shareStatus, setShareStatus] = useState('Share Score')
+  const [syncStatus, setSyncStatus] = useState<'saving' | 'saved' | 'failed'>('saving')
+
+  useEffect(() => {
+    let active = true
+    setSyncStatus('saving')
+    void submitRun({
+      playerId,
+      nickname,
+      distance: Math.floor(finalStats.distance),
+      sol: finalStats.sol,
+    }).then(() => {
+      if (active) setSyncStatus('saved')
+    }).catch(() => {
+      if (active) setSyncStatus('failed')
+    })
+    return () => {
+      active = false
+    }
+  }, [finalStats.distance, finalStats.sol, nickname, playerId])
 
   const retry = (): void => {
     audioSystem.play('ui')
@@ -40,6 +62,11 @@ export function GameOverScreen() {
         <span><b>{finalStats.bestCombo}</b><small>Best Combo</small></span>
         <span><b>{bestScore.toLocaleString('en-US')}</b><small>Best Score</small></span>
       </div>
+      <p className={`leaderboard-sync is-${syncStatus}`}>
+        {syncStatus === 'saving' && 'Sending run to the leaderboard...'}
+        {syncStatus === 'saved' && `Best run synced for ${nickname}.`}
+        {syncStatus === 'failed' && 'Run saved locally. Leaderboard sync will return when the database is online.'}
+      </p>
       <div className="menu-actions gameover-actions">
         <button className="game-button game-button-primary" type="button" onClick={retry}>Retry</button>
         <button className="game-button" type="button" onClick={() => void share()}>{shareStatus}</button>
