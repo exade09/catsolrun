@@ -1,6 +1,7 @@
 import { useState, type FormEvent } from 'react'
 import { audioSystem } from '../systems/audio'
 import { useGameStore } from '../../stores/gameStore'
+import { selectActiveRewardProfile, useRewardStore } from '../../stores/rewardStore'
 import { getNicknameError, NICKNAME_MAX_LENGTH, normalizeNickname } from '../../leaderboard/types'
 import { SoundIcon, SolMark } from './GameIcons'
 
@@ -10,6 +11,7 @@ export function MainMenu() {
   const bestScore = useGameStore((state) => state.bestScore)
   const nickname = useGameStore((state) => state.nickname)
   const setNickname = useGameStore((state) => state.setNickname)
+  const rewardProfile = useRewardStore(selectActiveRewardProfile)
   const [showInstructions, setShowInstructions] = useState(false)
   const [editingNickname, setEditingNickname] = useState(nickname.length === 0)
   const [nicknameDraft, setNicknameDraft] = useState(nickname)
@@ -91,7 +93,7 @@ export function MainMenu() {
           <span><kbd>S</kbd><b>Slide</b></span>
           <span><kbd>P</kbd><b>Pause</b></span>
         </div>
-        <p>Swipe on the game to move on touch devices. Follow warning arrows, chain SOL pickups, and use signal power-ups</p>
+        <p>Swipe on the game to move on touch devices. Follow warning arrows, chain SOL notes, and use signal power-ups</p>
         <button className="game-button game-button-primary" type="button" onClick={() => setShowInstructions(false)}>Back to menu</button>
       </div>
     )
@@ -119,6 +121,13 @@ export function MainMenu() {
           Change
         </button>
       </div>
+      <a
+        className={`menu-reward-status${rewardProfile?.eligibility === 'eligible' ? ' is-eligible' : ''}`}
+        href="#rewards"
+      >
+        <span>{rewardProfile?.eligibility === 'eligible' ? 'DEMO REWARDS ACTIVE' : 'TRIAL MODE'}</span>
+        <strong>{rewardProfile?.eligibility === 'eligible' ? 'Eligible runs can add Demo SOL' : 'Play freely / no persistent run credit'}</strong>
+      </a>
       <div className="menu-actions">
         <button className="game-button game-button-primary" type="button" onClick={start}>Start Run</button>
         <button className="game-button" type="button" onClick={() => setShowInstructions(true)}>How to Play</button>
@@ -127,7 +136,7 @@ export function MainMenu() {
           <span>Audio {audioEnabled ? 'On' : 'Off'}</span>
         </button>
       </div>
-      <p className="collectible-notice">In-game SOL is a gameplay collectible and does not represent real cryptocurrency</p>
+      <p className="collectible-notice">SOL notes score the run. Demo SOL rewards are simulated and never transfer cryptocurrency</p>
     </div>
   )
 }

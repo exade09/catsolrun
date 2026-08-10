@@ -38,7 +38,7 @@ export function GameSection({ children, status = "Ready when you are", className
 
         <div className="game-section__notice">
           <span>Transparent by design</span>
-          <p>In-game SOL is a gameplay collectible and does not represent real cryptocurrency</p>
+          <p>SOL notes drive the score. Eligible profiles can earn separate Demo SOL credits, with no real cryptocurrency or transaction involved</p>
         </div>
       </div>
     </section>

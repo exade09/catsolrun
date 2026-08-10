@@ -8,6 +8,7 @@ import {
   GameSection,
   HowToPlaySection,
   LeaderboardSection,
+  RewardsSection,
   StorySection,
   TokenomicsSection,
 } from './sections'
@@ -101,6 +102,7 @@ function App() {
             </Suspense>
           </GameErrorBoundary>
         </GameSection>
+        <RewardsSection />
         <LeaderboardSection />
         <StorySection />
         <HowToPlaySection />

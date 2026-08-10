@@ -1,4 +1,6 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
+import { SIMULATED_LAMPORTS_PER_SOL } from "../rewards/rewardRules";
+import { selectActiveRewardProfile, useRewardStore } from "../stores/rewardStore";
 import { BrandMark } from "./BrandMark";
 import { Icon } from "./Icon";
 
@@ -9,9 +11,8 @@ export interface HeaderProps {
 
 const navigation = [
   { label: "Game", href: "#game" },
+  { label: "Rewards", href: "#rewards" },
   { label: "Leaderboard", href: "#leaderboard" },
-  { label: "Story", href: "#story" },
-  { label: "How to Play", href: "#how-to-play" },
   { label: "Tokenomics", href: "#tokenomics" },
 ];
 
@@ -21,6 +22,8 @@ export function Header({
 }: HeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const rewardProfile = useRewardStore(selectActiveRewardProfile);
+  const demoBalance = ((rewardProfile?.balanceLamports ?? 0) / SIMULATED_LAMPORTS_PER_SOL).toFixed(4);
 
   useEffect(() => {
     if (!menuOpen) return undefined;
@@ -68,6 +71,15 @@ export function Header({
 
         <div className="site-header__actions">
           {socialLinks}
+          <a
+            className="reward-header-button"
+            href="#rewards"
+            aria-label={`Open simulated withdrawal. Current local balance ${demoBalance} Demo SOL`}
+            onClick={closeMenu}
+          >
+            <span>Withdraw Demo</span>
+            <strong>{demoBalance} Demo SOL</strong>
+          </a>
           <a
             className="button button--small button--primary"
             href="#game"

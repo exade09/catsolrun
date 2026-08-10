@@ -25,7 +25,7 @@ export function TokenomicsSection() {
             id="tokenomics-title"
           />
           <p className="tokenomics-section__note">
-            Token information is provided for project reference. In-game SOL remains a gameplay collectible and is not a cryptocurrency reward
+            Token information is provided for project reference. SOL notes and Demo SOL remain separate gameplay simulations, never cryptocurrency rewards
           </p>
         </div>
 

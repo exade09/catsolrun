@@ -2,7 +2,7 @@
 
 Meowave is a browser-based, third-person endless runner starring a custom low-poly orange-and-white cat in oversized headphones. The game is embedded inside a complete responsive site with character art, controls, features, tokenomics, social links, FAQ, and WebGL fallbacks.
 
-> In-game SOL is a gameplay collectible and does not represent real cryptocurrency.
+> SOL notes are gameplay collectibles. Demo SOL balances, eligibility checks, and withdrawals in the Reward Lab are simulations only: they have no monetary value and never create a blockchain transaction.
 
 ## Highlights
 
@@ -11,10 +11,11 @@ Meowave is a browser-based, third-person endless runner starring a custom low-po
 - A lightweight procedural cat rebuilt from four local reference poses with faceted orange-and-white markings, a striped tail, collar, and silver headphones.
 - Recycled modular track segments, readable obstacles, SOL pickup trails, five power-ups, combos, near misses, and progressive difficulty.
 - A persisted runner nickname and a global top-20 distance leaderboard backed by Neon Postgres.
+- A transparent Reward Lab with a per-address Demo SOL profile, active-play progress, capped run credits, and simulated withdrawal receipts.
 - Synthesized Web Audio music and effects that begin only after user interaction.
 - A custom Meowave favicon and low-poly visual system shared by the header, hero, reference gallery, game, and tokenomics section.
 - Responsive quality scaling, reduced-motion support, keyboard access, local best-score persistence, and an isolated WebGL fallback.
-- No account, transaction, external game engine, or installation is required to play.
+- No wallet connection, signature, private key, transaction, external game engine, or installation is required to play.
 
 ## Token reference
 
@@ -24,7 +25,7 @@ Meowave is a browser-based, third-person endless runner starring a custom low-po
 | Supply | `1B` |
 | Blockchain | `Solana` |
 
-These values are displayed as project information. The game does not distribute cryptocurrency rewards.
+These values are displayed as project information. The Reward Lab does not distribute `$MWAVE`, SOL, or any other cryptocurrency.
 
 ## Technology
 
@@ -74,6 +75,7 @@ Open the local URL printed by Vite. The development server listens on the local 
 | `npm run dev` | Start the Vite development server. |
 | `npm run typecheck` | Run strict TypeScript checks. |
 | `npm run check:content` | Scan project content for Cyrillic characters. |
+| `npm run check:rewards` | Verify the published Demo SOL constants, rate model, and pickup count. |
 | `npm run build` | Type-check and create the optimized `dist/` build. |
 | `npm run preview` | Serve the current production build locally. |
 
@@ -82,6 +84,7 @@ A complete verification pass is:
 ```bash
 npm run typecheck
 npm run check:content
+npm run check:rewards
 npm run build
 npm run preview
 ```
@@ -120,14 +123,14 @@ Meowave uses explicit phases so UI, audio, input, and simulation stay synchroniz
 3. Countdown gives the player a clear start cue.
 4. Playing advances the route, score, collision checks, and difficulty.
 5. Paused freezes the active run.
-6. Game over reports score, distance, collected SOL, combo, and personal best.
+6. Game over reports score, distance, collected SOL notes, combo, and personal best.
 7. Restarting clears transient run data before another countdown.
 
 The opening section uses forgiving patterns. Speed and obstacle complexity increase gradually to a capped maximum.
 
 ## Scoring and persistence
 
-Score combines distance, speed, in-game SOL pickups, collection combos, and near-miss bonuses. A collision ends the run unless an active shield absorbs it.
+Score combines distance, speed, SOL-note pickups, collection combos, and near-miss bonuses. A collision ends the run unless an active shield absorbs it.
 
 The browser stores the anonymous runner profile, gameplay preferences, and personal best under `meowave-settings-v1`:
 
@@ -140,15 +143,50 @@ The browser stores the anonymous runner profile, gameplay preferences, and perso
 
 Private browsing, disabled storage, clearing site data, or changing browser origins can reset local progress. Gameplay remains available when storage is unavailable.
 
+## Reward Lab simulation
+
+The Reward Lab is a working product simulation, not a cryptocurrency payout system. It deliberately separates the runner's **SOL notes** from a profile's **Demo SOL** balance.
+
+1. A player can try every part of the runner without linking anything.
+2. To enable future run credits, the player enters a public Solana address. The app validates only the address format; it does not prove ownership.
+3. The player explicitly runs a `$10+ eligibility simulation`. This button records a demo pass and does not query an RPC endpoint, token account, oracle, wallet balance, or price feed.
+4. Eligible, meaningful completed runs credit Demo SOL once per unique run ID. Trial pickups are never credited retroactively.
+5. Withdrawal controls unlock after 7,200 seconds of eligible active play and when the balance reaches at least 0.25 Demo SOL.
+6. A withdrawal deducts 0.25 Demo SOL and creates a local/server simulated receipt. It never creates a transaction, signature request, or transaction hash.
+
+### Published economy
+
+All accounting uses integer simulated lamport-like units so UI rounding cannot create value.
+
+| Rule | Value |
+| --- | ---: |
+| One physical reward note | `0.0001 Demo SOL` (`100,000` units) |
+| Track density | `5 notes / 280 m` |
+| Average active distance | `70,000 m / hour` |
+| Modeled collection rate | `66.7%` |
+| Modeled average | about `0.0833 Demo SOL / hour` |
+| Maximum credit rate | `0.125 Demo SOL / hour` |
+| Daily credit cap | `0.30 Demo SOL` |
+| Withdrawal activity gate | `2 active hours` |
+| Minimum simulated withdrawal | `0.25 Demo SOL` |
+
+The 70,000-meter assumption is derived from repeated four-minute runs under the actual speed curve: roughly 4.69 km per run and 70.3 km per active hour, rounded for the public model. That yields `70,000 / 280 × 5 × 0.667 ≈ 833` collected reward notes per hour, or about `0.0833 Demo SOL`. Therefore an average active player reaches `0.25 Demo SOL` in roughly three hours. Longer expert runs can average faster because they spend more time at the speed cap; shorter runs take longer. The two-hour gate unlocks the control, while hourly and daily caps preserve the maximum. Double SOL can increase the run score display, but never multiplies physical reward-note credits.
+
+The full English specification is in [`public/MEOWAVE-REWARD-WHITEPAPER.md`](./public/MEOWAVE-REWARD-WHITEPAPER.md) and is also served at `/MEOWAVE-REWARD-WHITEPAPER.md` by the site.
+
+Meaningful active time requires a run of at least 20 seconds, at least two accepted movement commands, and an average of at least one command per 30 seconds for longer runs. Reward eligibility and the destination address are bound when the run starts, so linking or changing an address mid-run cannot credit earlier trial pickups.
+
+Local persistence makes the demo usable with the plain Vite development server and remains the authority for the displayed balance. When the Vercel API and Neon database are available, public addresses and simulated run, ledger, and withdrawal records are sent to a best-effort server mirror. Offline requests can make that mirror differ from the browser ledger, and all run metrics are client-reported prototype telemetry. A typed address is not authentication; a real implementation would require signed-message ownership, a named qualifying token, authoritative balance and price data, server-authoritative anti-cheat telemetry, a funded treasury, legal review, and an explicit transaction confirmation flow.
+
 ## Power-ups
 
 | Power-up | Effect |
 | --- | --- |
-| SOL Magnet | Pulls nearby in-game SOL toward the player. |
+| SOL Magnet | Pulls nearby SOL notes toward the player. |
 | Signal Shield | Absorbs one collision and grants a short grace period. |
 | Rhythm Boost | Temporarily increases applicable score gains. |
 | Slow Time | Briefly reduces effective world speed. |
-| Double SOL | Counts each collected in-game SOL item twice while active. |
+| Double SOL | Counts each collected SOL note twice for the run score only. |
 
 ## Project structure
 
@@ -160,7 +198,8 @@ src/
   assets/poses/          Four local Meowave reference angles
   components/            Header, hero, social marks, branding, and primitives
   config/                External social link configuration
-  sections/              Game, story, controls, features, tokenomics, and FAQ
+  rewards/               Shared simulation rules, types, and API client
+  sections/              Game, rewards, leaderboard, story, controls, features, tokenomics, and FAQ
   game/
     character/           Procedural low-poly cat and animation
     collectibles/        In-game SOL visuals
@@ -175,9 +214,9 @@ src/
     world/               Recycled track segments and environment
   leaderboard/           Nickname validation, API client, and leaderboard types
   sections/              Page sections including the global leaderboard
-  stores/                Persisted Zustand game state
+  stores/                Persisted Zustand game and per-address reward state
   styles/                Global responsive low-poly design system
-api/                     Vercel Function for Neon leaderboard reads and writes
+api/                     Separate Vercel Functions for leaderboard and reward simulation data
 database/                PostgreSQL schema reference
 ```
 
@@ -219,7 +258,7 @@ The repository includes [`vercel.json`](./vercel.json) with the Vite framework, 
 5. Confirm that the integration created the pooled `DATABASE_URL` environment variable.
 6. Deploy or redeploy the project after connecting the database.
 
-The `/api/leaderboard` Vercel Function creates the required table and ranking index on its first database request. The same statements are available in [`database/schema.sql`](./database/schema.sql) for manual setup or review. A completed run upserts one row per anonymous player profile, preserving that profile's best distance and the in-game SOL collected on that best run.
+The `/api/leaderboard` Vercel Function creates the ranking table and index on its first database request. The independent `/api/rewards` function owns the simulated accounts, run records, ledger entries, and withdrawal receipts; leaderboard submissions are never trusted as reward events. The same statements are available in [`database/schema.sql`](./database/schema.sql) for manual setup or review.
 
 For local API development, copy `.env.example` to `.env.local`, insert a development connection string, and run `npx vercel dev`. Keep real database credentials out of Git.
 

@@ -652,6 +652,54 @@
 .leaderboard-sync.is-saved { color: var(--game-green); }
 .leaderboard-sync.is-failed { color: #ffcf8a; }
 
+.menu-reward-status {
+  display: grid;
+  width: min(100%, 25rem);
+  margin: 0.15rem 0 0.9rem;
+  border: 1px solid rgba(255, 207, 138, 0.24);
+  padding: 0.55rem 0.75rem;
+  color: rgba(255, 255, 255, 0.68);
+  background: rgba(255, 184, 77, 0.055);
+  text-align: left;
+  clip-path: polygon(7px 0, 100% 0, 100% calc(100% - 7px), calc(100% - 7px) 100%, 0 100%, 0 7px);
+  transition: border-color 160ms ease, transform 160ms ease;
+}
+
+.menu-reward-status:hover {
+  border-color: rgba(255, 207, 138, 0.55);
+  transform: translateY(-1px);
+}
+
+.menu-reward-status span {
+  color: #ffcf8a;
+  font-size: 0.54rem;
+  font-weight: 850;
+  letter-spacing: 0.12em;
+}
+
+.menu-reward-status strong {
+  margin-top: 0.18rem;
+  font-size: 0.64rem;
+  font-weight: 650;
+}
+
+.menu-reward-status.is-eligible {
+  border-color: rgba(20, 241, 217, 0.32);
+  background: rgba(20, 241, 217, 0.06);
+}
+
+.menu-reward-status.is-eligible span { color: var(--game-cyan); }
+
+.reward-run-sync {
+  min-height: 1rem;
+  margin: -0.35rem 0 0.85rem;
+  color: rgba(255, 255, 255, 0.52);
+  font-size: 0.63rem;
+}
+
+.reward-run-sync.is-earned { color: var(--game-cyan); }
+.reward-run-sync.is-trial { color: #ffcf8a; }
+
 .touch-controls {
   position: absolute;
   right: 0;

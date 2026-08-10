@@ -4,6 +4,7 @@ import { createJSONStorage, persist } from 'zustand/middleware'
 import { GAME_CONFIG } from '../game/config/gameConfig'
 import type { PowerUpType } from '../game/types/game'
 import { normalizeNickname } from '../leaderboard/types'
+import { selectActiveRewardProfile, useRewardStore } from './rewardStore'
 
 export type GamePhase =
   | 'loading'
@@ -21,9 +22,13 @@ export interface ActivePowerUp {
 }
 
 export interface FinalStats {
+  runId: string
+  rewardAddress: string | null
   score: number
   distance: number
   sol: number
+  rawSol: number
+  actions: number
   bestCombo: number
   elapsedTime: number
   nearMisses: number
@@ -33,6 +38,8 @@ export interface RunMetrics {
   score: number
   distance: number
   sol: number
+  rawSol: number
+  actions: number
   combo: number
   bestCombo: number
   speed: number
@@ -45,6 +52,8 @@ export type RunMetricsUpdate = Partial<RunMetrics>
 export interface GameStore extends RunMetrics {
   phase: GamePhase
   countdown: number
+  runId: string
+  rewardAddress: string | null
   playerId: string
   nickname: string
   bestScore: number
@@ -69,6 +78,7 @@ export interface GameStore extends RunMetrics {
   advanceRun: (deltaSeconds: number, speed?: number) => void
   addScore: (amount: number) => void
   collectSol: (amount?: number) => void
+  registerAction: () => void
   setCombo: (combo: number) => void
   breakCombo: () => void
   registerNearMiss: () => void
@@ -83,9 +93,13 @@ export interface GameStore extends RunMetrics {
 }
 
 const EMPTY_FINAL_STATS: FinalStats = {
+  runId: '',
+  rewardAddress: null,
   score: 0,
   distance: 0,
   sol: 0,
+  rawSol: 0,
+  actions: 0,
   bestCombo: 0,
   elapsedTime: 0,
   nearMisses: 0,
@@ -95,6 +109,8 @@ const runDefaults = (): RunMetrics => ({
   score: 0,
   distance: 0,
   sol: 0,
+  rawSol: 0,
+  actions: 0,
   combo: 0,
   bestCombo: 0,
   speed: GAME_CONFIG.baseSpeed,
@@ -136,9 +152,13 @@ const isActive = (powerUp: ActivePowerUp | null, type?: PowerUpType): boolean =>
   powerUp !== null && powerUp.expiresAt > now() && (type === undefined || powerUp.type === type)
 
 const finalStatsFrom = (state: GameStore): FinalStats => ({
+  runId: state.runId,
+  rewardAddress: state.rewardAddress,
   score: state.score,
   distance: state.distance,
   sol: state.sol,
+  rawSol: state.rawSol,
+  actions: state.actions,
   bestCombo: state.bestCombo,
   elapsedTime: state.elapsedTime,
   nearMisses: state.nearMisses,
@@ -149,6 +169,8 @@ export const useGameStore = create<GameStore>()(
     (set, get) => ({
       phase: 'loading',
       countdown: 3,
+      runId: createPlayerId(),
+      rewardAddress: null,
       playerId: createPlayerId(),
       nickname: '',
       ...runDefaults(),
@@ -166,9 +188,12 @@ export const useGameStore = create<GameStore>()(
 
       startRun: () => {
         pausedAt = null
+        const rewardProfile = selectActiveRewardProfile(useRewardStore.getState())
         set({
           phase: 'countdown',
           countdown: 3,
+          runId: createPlayerId(),
+          rewardAddress: rewardProfile?.eligibility === 'eligible' ? rewardProfile.address : null,
           ...runDefaults(),
           activePowerUp: null,
           finalStats: EMPTY_FINAL_STATS,
@@ -184,9 +209,12 @@ export const useGameStore = create<GameStore>()(
 
       restartRun: () => {
         pausedAt = null
+        const rewardProfile = selectActiveRewardProfile(useRewardStore.getState())
         set({
           phase: 'restarting',
           countdown: 3,
+          runId: createPlayerId(),
+          rewardAddress: rewardProfile?.eligibility === 'eligible' ? rewardProfile.address : null,
           ...runDefaults(),
           activePowerUp: null,
           finalStats: EMPTY_FINAL_STATS,
@@ -201,6 +229,7 @@ export const useGameStore = create<GameStore>()(
         set({
           phase: 'menu',
           countdown: 3,
+          rewardAddress: null,
           ...runDefaults(),
           activePowerUp: null,
         })
@@ -260,6 +289,8 @@ export const useGameStore = create<GameStore>()(
           const score = wholeNonNegative(metrics.score ?? state.score, state.score)
           const distance = nonNegative(metrics.distance ?? state.distance, state.distance)
           const sol = wholeNonNegative(metrics.sol ?? state.sol, state.sol)
+          const rawSol = wholeNonNegative(metrics.rawSol ?? state.rawSol, state.rawSol)
+          const actions = wholeNonNegative(metrics.actions ?? state.actions, state.actions)
           const combo = wholeNonNegative(metrics.combo ?? state.combo, state.combo)
           const bestCombo = Math.max(
             state.bestCombo,
@@ -278,6 +309,8 @@ export const useGameStore = create<GameStore>()(
             score,
             distance,
             sol,
+            rawSol,
+            actions,
             combo,
             bestCombo,
             speed,
@@ -328,11 +361,15 @@ export const useGameStore = create<GameStore>()(
 
           return {
             sol: state.sol + collected,
+            rawSol: state.rawSol + pickupCount,
             combo,
             bestCombo: Math.max(state.bestCombo, combo),
             score: state.score + pickupScore,
           }
         }),
+
+      registerAction: () =>
+        set((state) => (state.phase === 'playing' ? { actions: state.actions + 1 } : {})),
 
       setCombo: (nextCombo) =>
         set((state) => {

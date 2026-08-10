@@ -38,7 +38,7 @@ export function FeaturesSection() {
               <span><Icon name="pulse" /></span>
             </div>
             <h3>Power in the pocket</h3>
-            <p>Magnetize SOL, absorb a hit, slow time, or push the score multiplier into overdrive</p>
+            <p>Magnetize SOL notes, absorb a hit, slow time, or push the score multiplier into overdrive</p>
           </article>
 
           <article className="feature feature--rhythm">

@@ -17,9 +17,10 @@ export function Footer() {
       <div className="site-footer__line" />
       <div className="site-footer__bottom">
         <p>&copy; {year} MEOWAVE. Built for play</p>
-        <p>In-game SOL is a gameplay collectible</p>
+        <p>Demo rewards are simulated. No real SOL is transferred</p>
         <nav aria-label="Footer navigation">
           <a href="#game">Game</a>
+          <a href="#rewards">Rewards</a>
           <a href="#story">Story</a>
           <a href="#faq">FAQ</a>
         </nav>

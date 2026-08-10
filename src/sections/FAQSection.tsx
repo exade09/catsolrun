@@ -7,7 +7,11 @@ const questions = [
   },
   {
     question: "Is the SOL I collect real cryptocurrency?",
-    answer: "No. In-game SOL is a gameplay collectible used for scoring and combos. It has no monetary value and cannot be withdrawn or transferred",
+    answer: "No. SOL notes are gameplay collectibles. Demo SOL is a separate simulated balance with no monetary value, blockchain transaction, or transfer of real cryptocurrency",
+  },
+  {
+    question: "How does the Reward Lab work?",
+    answer: "Link a public Solana address, run the clearly labeled simulation check, and finish meaningful runs. Withdrawal controls unlock after two active hours, while the published model targets 0.25 Demo SOL in about three hours for an average active player",
   },
   {
     question: "Do I need to install anything?",
@@ -21,6 +25,10 @@ const questions = [
     question: "Where is my best score stored?",
     answer: "Your personal best, audio setting, motion preference, and touch-control setting stay locally in your browser",
   },
+  {
+    question: "Where is my Demo SOL balance stored?",
+    answer: "The displayed balance is a local browser ledger keyed to the public address you enter. When available, the optional simulation API receives a best-effort mirror, but it is not a wallet, authentication method, or real-value account",
+  },
 ];
 
 export function FAQSection() {
@@ -31,7 +39,7 @@ export function FAQSection() {
           <SectionIntro
             eyebrow="Before the run"
             title={<>Clear answers<br />No fine print</>}
-            description="The game opens directly in your browser, and every in-game collectible stays inside the run"
+            description="The game opens directly in your browser, and the Reward Lab explains every simulated unit before you play"
             id="faq-title"
           />
           <a className="faq-section__game-link" href="#game">

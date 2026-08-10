@@ -30,7 +30,7 @@ const controls: ControlItem[] = [
 ];
 
 const runSkills = [
-  { icon: "coin" as const, title: "Collect SOL", text: "Trace pickup lines to raise your score" },
+  { icon: "coin" as const, title: "Collect notes", text: "Trace SOL-note lines to raise your score" },
   { icon: "spark" as const, title: "Build combos", text: "Keep collecting without breaking the trail" },
   { icon: "shield" as const, title: "Use power-ups", text: "Turn a tight route into a smart advantage" },
   { icon: "speed" as const, title: "Stay readable", text: "Watch silhouettes and react to warning pulses" },

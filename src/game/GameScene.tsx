@@ -31,6 +31,7 @@ export function GameScene() {
   const activePowerUp = useGameStore((state) => state.activePowerUp)
   const updateRun = useGameStore((state) => state.updateRun)
   const collectSol = useGameStore((state) => state.collectSol)
+  const registerAction = useGameStore((state) => state.registerAction)
   const registerNearMiss = useGameStore((state) => state.registerNearMiss)
   const activatePowerUp = useGameStore((state) => state.activatePowerUp)
   const consumeShield = useGameStore((state) => state.consumeShield)
@@ -131,6 +132,7 @@ export function GameScene() {
     const command = consumeNextReadyInput((queued) =>
       queued === 'left' || queued === 'right' || runtime.grounded,
     )
+    if (command) registerAction()
     if (command === 'left') runtime.lane = Math.max(-1, runtime.lane - 1) as -1 | 0 | 1
     if (command === 'right') runtime.lane = Math.min(1, runtime.lane + 1) as -1 | 0 | 1
     if (command === 'jump') {

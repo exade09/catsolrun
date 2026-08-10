@@ -50,6 +50,620 @@
 }
 
 @layer components {
+  .reward-header-button {
+    position: relative;
+    display: grid;
+    min-width: 118px;
+    min-height: 42px;
+    align-content: center;
+    border: 1px solid rgba(20, 241, 217, 0.3);
+    padding: 6px 12px 6px 38px;
+    color: var(--paper);
+    background:
+      linear-gradient(135deg, rgba(20, 241, 217, 0.13), transparent 55%),
+      rgba(255, 255, 255, 0.035);
+    clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+    transition: border-color 180ms ease, background-color 180ms ease, transform 180ms var(--ease-out);
+  }
+
+  .reward-header-button::before {
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    width: 15px;
+    height: 15px;
+    content: "";
+    background: linear-gradient(145deg, var(--cyan), var(--violet));
+    clip-path: polygon(50% 0, 100% 28%, 84% 88%, 25% 100%, 0 52%);
+    transform: translateY(-50%) rotate(12deg);
+  }
+
+  .reward-header-button:hover {
+    border-color: rgba(20, 241, 217, 0.72);
+    background-color: rgba(20, 241, 217, 0.06);
+    transform: translateY(-2px);
+  }
+
+  .reward-header-button span,
+  .reward-header-button strong {
+    display: block;
+    white-space: nowrap;
+  }
+
+  .reward-header-button span {
+    font-size: 0.58rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .reward-header-button strong {
+    margin-top: 2px;
+    color: var(--cyan);
+    font-family: Consolas, monospace;
+    font-size: 0.55rem;
+    font-weight: 650;
+  }
+}
+
+@layer sections {
+  .rewards-section {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 79% 17%, rgba(20, 241, 217, 0.12), transparent 25rem),
+      radial-gradient(circle at 8% 78%, rgba(220, 139, 66, 0.12), transparent 27rem),
+      linear-gradient(135deg, #0c1012 0 42%, #15131b 42% 71%, #0b0e11 71%);
+  }
+
+  .rewards-section::before {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    content: "";
+    background:
+      linear-gradient(112deg, transparent 0 28%, rgba(242, 237, 223, 0.04) 28% 28.12%, transparent 28.12%),
+      linear-gradient(33deg, transparent 0 67%, rgba(154, 108, 255, 0.09) 67% 67.15%, transparent 67.15%);
+    pointer-events: none;
+  }
+
+  .rewards-section__mesh {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .rewards-section__mesh span {
+    position: absolute;
+    border: 1px solid rgba(242, 237, 223, 0.075);
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.035), transparent 65%);
+    clip-path: polygon(12% 0, 100% 18%, 79% 100%, 0 70%);
+  }
+
+  .rewards-section__mesh span:nth-child(1) {
+    top: 7%;
+    right: -4%;
+    width: min(29vw, 410px);
+    aspect-ratio: 1;
+    transform: rotate(17deg);
+  }
+
+  .rewards-section__mesh span:nth-child(2) {
+    bottom: 5%;
+    left: -6%;
+    width: min(31vw, 460px);
+    aspect-ratio: 1.2;
+    transform: rotate(-19deg);
+  }
+
+  .rewards-section__mesh span:nth-child(3) {
+    top: 43%;
+    left: 43%;
+    width: 130px;
+    aspect-ratio: 1;
+    transform: rotate(38deg);
+  }
+
+  .rewards-section__layout {
+    position: relative;
+    display: grid;
+    min-width: 0;
+    grid-template-columns: minmax(280px, 0.62fr) minmax(560px, 1.2fr);
+    align-items: start;
+    gap: clamp(48px, 7vw, 104px);
+  }
+
+  .rewards-section__intro {
+    position: sticky;
+    min-width: 0;
+    top: calc(var(--header-height) + 46px);
+  }
+
+  .rewards-section__intro .section-intro__description,
+  .reward-step p,
+  .reward-lab small {
+    overflow-wrap: anywhere;
+  }
+
+  .rewards-section__whitepaper {
+    display: inline-flex;
+    align-items: center;
+    gap: 13px;
+    margin-top: 32px;
+    border-bottom: 1px solid rgba(20, 241, 217, 0.45);
+    padding: 0 2px 8px;
+    color: var(--paper);
+    font-size: 0.68rem;
+    font-weight: 750;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 180ms ease, border-color 180ms ease;
+  }
+
+  .rewards-section__whitepaper:hover {
+    color: var(--cyan);
+    border-color: var(--cyan);
+  }
+
+  .rewards-section__whitepaper span { color: var(--cyan); }
+
+  .reward-lab {
+    position: relative;
+    display: grid;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    gap: 14px;
+    border: 1px solid rgba(242, 237, 223, 0.16);
+    padding: clamp(14px, 2.1vw, 24px);
+    background:
+      linear-gradient(118deg, rgba(255, 255, 255, 0.06), transparent 29%),
+      rgba(9, 13, 16, 0.82);
+    box-shadow: 28px 35px 0 rgba(154, 108, 255, 0.035), 0 48px 90px rgba(0, 0, 0, 0.38);
+    clip-path: polygon(18px 0, calc(100% - 44px) 0, 100% 39px, 100% calc(100% - 18px), calc(100% - 18px) 100%, 35px 100%, 0 calc(100% - 34px), 0 18px);
+  }
+
+  .reward-lab::after {
+    position: absolute;
+    top: 0;
+    right: 44px;
+    width: 31%;
+    height: 2px;
+    content: "";
+    background: linear-gradient(90deg, var(--cyan), var(--violet), transparent);
+  }
+
+  .reward-lab__notice {
+    display: grid;
+    grid-template-columns: minmax(112px, 0.28fr) 1fr;
+    align-items: center;
+    gap: 17px;
+    border: 1px solid rgba(255, 184, 77, 0.28);
+    padding: 13px 15px;
+    background: rgba(255, 184, 77, 0.065);
+    clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+  }
+
+  .reward-lab__notice strong {
+    color: #ffcf8a;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .reward-lab__notice p {
+    color: rgba(242, 237, 223, 0.65);
+    font-size: 0.7rem;
+    line-height: 1.55;
+  }
+
+  .reward-lab__steps {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .reward-step,
+  .reward-balance-panel,
+  .reward-math,
+  .reward-history {
+    position: relative;
+    min-width: 0;
+    border: 1px solid rgba(242, 237, 223, 0.12);
+    background: rgba(255, 255, 255, 0.035);
+  }
+
+  .reward-step {
+    min-height: 250px;
+    padding: 20px;
+    clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 10px);
+  }
+
+  .reward-step--address { border-top-color: rgba(20, 241, 217, 0.5); }
+  .reward-step--eligibility { border-top-color: rgba(154, 108, 255, 0.55); }
+
+  .reward-step > header,
+  .reward-math > header {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    margin-bottom: 18px;
+  }
+
+  .reward-step > header span,
+  .reward-math > header span {
+    display: grid;
+    width: 28px;
+    height: 28px;
+    flex: 0 0 28px;
+    place-items: center;
+    color: var(--cyan);
+    background: rgba(20, 241, 217, 0.08);
+    font-family: Consolas, monospace;
+    font-size: 0.58rem;
+    clip-path: polygon(20% 0, 100% 12%, 88% 90%, 14% 100%, 0 24%);
+  }
+
+  .reward-step h3,
+  .reward-math h3 {
+    color: var(--paper);
+    font-size: 0.9rem;
+    letter-spacing: -0.015em;
+  }
+
+  .reward-step > p {
+    color: rgba(242, 237, 223, 0.55);
+    font-size: 0.72rem;
+    line-height: 1.6;
+  }
+
+  .reward-address-form {
+    display: grid;
+    gap: 9px;
+    margin-top: 17px;
+  }
+
+  .reward-address-form label {
+    color: rgba(242, 237, 223, 0.52);
+    font-size: 0.56rem;
+    font-weight: 750;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .reward-address-form > div {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .reward-address-form input {
+    min-width: 0;
+    border: 1px solid rgba(242, 237, 223, 0.16);
+    border-right: 0;
+    border-radius: 0;
+    padding: 12px 13px;
+    color: var(--paper);
+    background: rgba(0, 0, 0, 0.24);
+    font-family: Consolas, monospace;
+    font-size: 0.72rem;
+    outline: 0;
+  }
+
+  .reward-address-form input:focus {
+    border-color: var(--cyan);
+    box-shadow: inset 0 0 0 1px var(--cyan);
+  }
+
+  .reward-address-form .button {
+    border-radius: 0;
+    padding-inline: 15px;
+  }
+
+  .reward-address-form small,
+  .reward-balance-panel > small,
+  .reward-math > small {
+    color: rgba(242, 237, 223, 0.38);
+    font-size: 0.58rem;
+    line-height: 1.5;
+  }
+
+  .reward-linked-address,
+  .reward-eligibility-result {
+    display: grid;
+    align-content: start;
+    gap: 9px;
+    margin-top: 25px;
+  }
+
+  .reward-linked-address > span,
+  .reward-eligibility-result > span {
+    color: var(--cyan);
+    font-size: 0.57rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .reward-linked-address > strong {
+    overflow: hidden;
+    color: var(--paper);
+    font-family: Consolas, monospace;
+    font-size: 1rem;
+    text-overflow: ellipsis;
+  }
+
+  .reward-linked-address .button,
+  .reward-step--eligibility .button {
+    width: fit-content;
+    margin-top: 8px;
+  }
+
+  .reward-eligibility-result > strong {
+    color: var(--paper);
+    font-size: 1.15rem;
+  }
+
+  .reward-eligibility-result > p {
+    color: rgba(242, 237, 223, 0.48);
+    font-size: 0.65rem;
+    line-height: 1.5;
+  }
+
+  .reward-lab__error {
+    border-left: 2px solid var(--danger, #ff5470);
+    padding: 9px 12px;
+    color: #ffb3bf;
+    background: rgba(255, 84, 112, 0.07);
+    font-size: 0.68rem;
+  }
+
+  .reward-balance-panel {
+    overflow: hidden;
+    padding: clamp(20px, 3vw, 29px);
+    background:
+      linear-gradient(115deg, rgba(20, 241, 217, 0.11), transparent 42%),
+      rgba(12, 17, 20, 0.94);
+    clip-path: polygon(0 0, calc(100% - 24px) 0, 100% 24px, 100% 100%, 15px 100%, 0 calc(100% - 15px));
+  }
+
+  .reward-balance-panel::before {
+    position: absolute;
+    top: -55px;
+    right: -30px;
+    width: 170px;
+    height: 170px;
+    content: "";
+    border: 1px solid rgba(154, 108, 255, 0.22);
+    clip-path: polygon(13% 0, 100% 27%, 78% 100%, 0 73%);
+    transform: rotate(19deg);
+  }
+
+  .reward-balance-panel > header {
+    position: relative;
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .reward-balance-panel > header div { display: grid; gap: 5px; }
+
+  .reward-balance-panel > header span,
+  .reward-balance-panel > header small {
+    color: rgba(242, 237, 223, 0.45);
+    font-size: 0.57rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .reward-balance-panel > header strong {
+    color: var(--cyan);
+    font-family: Consolas, monospace;
+    font-size: clamp(1.8rem, 4vw, 3.1rem);
+    letter-spacing: -0.07em;
+    white-space: nowrap;
+  }
+
+  .reward-progress-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    margin: 24px 0 18px;
+  }
+
+  .reward-progress { display: grid; gap: 9px; }
+
+  .reward-progress > div {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    color: rgba(242, 237, 223, 0.55);
+    font-size: 0.58rem;
+  }
+
+  .reward-progress b {
+    color: var(--paper);
+    font-family: Consolas, monospace;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .reward-progress progress {
+    width: 100%;
+    height: 6px;
+    overflow: hidden;
+    border: 0;
+    background: rgba(255, 255, 255, 0.09);
+    appearance: none;
+  }
+
+  .reward-progress progress::-webkit-progress-bar { background: rgba(255, 255, 255, 0.09); }
+  .reward-progress progress::-webkit-progress-value { background: linear-gradient(90deg, var(--violet), var(--cyan)); }
+  .reward-progress progress::-moz-progress-bar { background: linear-gradient(90deg, var(--violet), var(--cyan)); }
+
+  .reward-balance-panel__estimate {
+    margin-bottom: 18px;
+    color: rgba(242, 237, 223, 0.65);
+    font-size: 0.69rem;
+    line-height: 1.55;
+  }
+
+  .reward-balance-panel .button--wide {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .reward-balance-panel .button:disabled,
+  .reward-step .button:disabled {
+    cursor: not-allowed;
+    filter: saturate(0.2);
+    opacity: 0.43;
+    transform: none;
+  }
+
+  .reward-balance-panel__success {
+    margin-top: 12px;
+    border-left: 2px solid var(--cyan);
+    padding: 9px 11px;
+    color: var(--cyan);
+    background: rgba(20, 241, 217, 0.06);
+    font-size: 0.65rem;
+    line-height: 1.5;
+  }
+
+  .reward-math {
+    padding: 21px;
+    background: linear-gradient(135deg, rgba(154, 108, 255, 0.09), rgba(255, 255, 255, 0.025));
+  }
+
+  .reward-math__equation {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin: 8px 0 16px;
+    font-family: Consolas, monospace;
+  }
+
+  .reward-math__equation strong {
+    border: 1px solid rgba(242, 237, 223, 0.12);
+    padding: 7px 9px;
+    color: var(--paper);
+    background: rgba(0, 0, 0, 0.17);
+    font-size: 0.67rem;
+  }
+
+  .reward-math__equation span { color: var(--cyan); }
+
+  .reward-math > p {
+    margin-bottom: 10px;
+    color: rgba(242, 237, 223, 0.56);
+    font-size: 0.68rem;
+    line-height: 1.6;
+  }
+
+  .reward-history { overflow: hidden; }
+
+  .reward-history > header {
+    display: flex;
+    justify-content: space-between;
+    gap: 18px;
+    border-bottom: 1px solid rgba(242, 237, 223, 0.1);
+    padding: 15px 18px;
+    color: rgba(242, 237, 223, 0.44);
+    font-size: 0.57rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+  }
+
+  .reward-history > header strong { color: var(--cyan); }
+
+  .reward-history__table-wrap {
+    max-width: 100%;
+    overflow-x: auto;
+  }
+
+  .reward-history table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.64rem;
+  }
+
+  .reward-history th,
+  .reward-history td {
+    border-bottom: 1px solid rgba(242, 237, 223, 0.075);
+    padding: 12px 15px;
+    text-align: left;
+    white-space: nowrap;
+  }
+
+  .reward-history th {
+    color: rgba(242, 237, 223, 0.38);
+    font-size: 0.52rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .reward-history td { color: rgba(242, 237, 223, 0.7); }
+  .reward-history td:last-child { color: var(--cyan); }
+
+  .reward-history__empty {
+    padding: 28px 18px;
+    text-align: center;
+  }
+
+  .reward-history__empty strong {
+    color: var(--paper);
+    font-size: 0.8rem;
+  }
+
+  .reward-history__empty p {
+    margin: 7px auto 0;
+    color: rgba(242, 237, 223, 0.42);
+    font-size: 0.64rem;
+  }
+}
+
+@layer responsive {
+  @media (max-width: 1180px) {
+    .reward-header-button { min-width: 102px; }
+    .reward-header-button strong { display: none; }
+    .rewards-section__layout { grid-template-columns: minmax(250px, 0.5fr) minmax(510px, 1fr); gap: 45px; }
+  }
+
+  @media (max-width: 960px) {
+    .reward-header-button strong { display: block; }
+    .rewards-section__layout { grid-template-columns: 1fr; }
+    .rewards-section__intro { position: static; max-width: 680px; }
+    .reward-lab { width: min(100%, 760px); }
+  }
+
+  @media (max-width: 660px) {
+    .reward-lab__steps,
+    .reward-progress-grid { grid-template-columns: 1fr; }
+    .reward-step { min-height: 0; }
+    .reward-lab__notice { grid-template-columns: 1fr; gap: 6px; }
+    .reward-balance-panel > header { flex-direction: column; gap: 6px; }
+    .reward-address-form > div { grid-template-columns: 1fr; gap: 7px; }
+    .reward-address-form input { border-right: 1px solid rgba(242, 237, 223, 0.16); }
+  }
+
+  @media (max-width: 520px) {
+    .reward-header-button { width: 100%; }
+    .reward-lab { padding: 12px; clip-path: polygon(12px 0, calc(100% - 27px) 0, 100% 27px, 100% calc(100% - 12px), calc(100% - 12px) 100%, 22px 100%, 0 calc(100% - 22px), 0 12px); }
+    .reward-step,
+    .reward-math { padding: 17px; }
+    .reward-balance-panel { padding: 19px 16px; }
+    .reward-balance-panel > header strong { font-size: clamp(1.45rem, 7vw, 1.9rem); }
+    .reward-progress > div { align-items: flex-start; flex-direction: column; gap: 4px; }
+    .reward-history th,
+    .reward-history td { padding-inline: 11px; }
+  }
+}
+
+@layer components {
   .brand-mark__symbol {
     position: relative;
     filter: drop-shadow(0 7px 13px rgba(0, 0, 0, 0.32));
