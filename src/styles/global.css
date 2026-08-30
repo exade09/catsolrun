@@ -695,7 +695,7 @@
     border-color: rgba(138, 107, 255, 0.25);
     background: rgba(7, 5, 20, 0.72);
     box-shadow: 0 20px 65px rgba(1, 0, 9, 0.36);
-    backdrop-filter: blur(22px) saturate(150%);
+    backdrop-filter: blur(14px) saturate(140%);
   }
 
   .wallet-button {
@@ -766,7 +766,6 @@
   .site-main > .tokenomics-section,
   .site-main > .faq-section {
     color: var(--cream);
-    border-top: 1px solid rgba(154, 108, 255, 0.10);
     background: transparent;
   }
 
@@ -783,7 +782,7 @@
     height: 100%;
     object-fit: cover;
     opacity: 0.88;
-    filter: saturate(1.05) contrast(1.05) brightness(0.78);
+    transform: translateZ(0);
   }
 
   .hero__video-shade {
@@ -792,7 +791,8 @@
     inset: 0;
     background:
       linear-gradient(90deg, rgba(5, 3, 15, 0.91) 0%, rgba(5, 3, 15, 0.56) 43%, rgba(5, 3, 15, 0.20) 73%, rgba(5, 3, 15, 0.38) 100%),
-      linear-gradient(180deg, rgba(5, 3, 15, 0.32), transparent 43%, #070414 100%);
+      linear-gradient(180deg, rgba(5, 3, 15, 0.32), transparent 43%, #070414 100%),
+      rgba(2, 1, 8, 0.2);
   }
 
   .hero::before {
@@ -843,9 +843,8 @@
   }
 
   .hero-character__frame {
-    background: linear-gradient(145deg, rgba(24, 13, 54, 0.68), rgba(4, 4, 15, 0.72));
+    background: linear-gradient(145deg, rgba(24, 13, 54, 0.82), rgba(4, 4, 15, 0.86));
     box-shadow: 30px 34px 0 rgba(112, 60, 255, 0.08), 0 40px 100px rgba(0, 0, 0, 0.52);
-    backdrop-filter: blur(9px);
   }
 
   .game-stage-shell {
@@ -1213,7 +1212,9 @@
     isolation: isolate;
     overflow: hidden;
     padding-top: 110px;
-    background: #03020a;
+    background:
+      linear-gradient(to bottom, #05030e 0, transparent 80px),
+      #03020a;
   }
 
   .scanner-backdrop {
@@ -2286,7 +2287,6 @@
     min-height: max(760px, 100svh);
     place-items: center;
     overflow: hidden;
-    border-bottom: 1px solid var(--line);
     background:
       linear-gradient(115deg, rgba(37, 40, 41, 0.96), rgba(16, 17, 18, 0.94) 57%, rgba(20, 22, 23, 0.96)),
       #1c1e1f;
@@ -2486,6 +2486,7 @@
     width: min(100%, 510px);
     justify-self: end;
     animation: character-drift 6s var(--ease-out) infinite;
+    will-change: transform;
   }
 
   .hero-character::before {
@@ -2506,11 +2507,10 @@
     position: relative;
     border: 1px solid rgba(242, 237, 223, 0.2);
     padding: 11px;
-    background: rgba(15, 16, 17, 0.4);
+    background: rgba(15, 16, 17, 0.72);
     box-shadow: 0 32px 80px rgba(0, 0, 0, 0.36);
     clip-path: polygon(8% 0, 94% 3%, 100% 14%, 97% 89%, 87% 100%, 6% 96%, 0 86%, 2% 10%);
-    transform: rotate(1.5deg);
-    backdrop-filter: blur(6px);
+    transform: rotate(1.5deg) translateZ(0);
   }
 
   .hero-character__image-wrap {
@@ -2548,6 +2548,7 @@
     height: 18%;
     background: linear-gradient(to bottom, transparent, rgba(66, 232, 211, 0.14), transparent);
     animation: scan-line 5.5s linear infinite;
+    will-change: transform;
   }
 
   .hero-character__label {
@@ -2584,17 +2585,20 @@
   }
 
   .hero-character__equalizer span {
+    --eq-scale: 0.4;
     width: 2px;
     height: 45%;
+    transform-origin: bottom;
     background: var(--cyan);
     box-shadow: 0 0 8px rgba(66, 232, 211, 0.45);
     animation: equalize 900ms ease-in-out infinite alternate;
+    will-change: transform;
   }
 
-  .hero-character__equalizer span:nth-child(2) { animation-delay: -300ms; height: 80%; }
-  .hero-character__equalizer span:nth-child(3) { animation-delay: -120ms; height: 55%; }
-  .hero-character__equalizer span:nth-child(4) { animation-delay: -500ms; height: 100%; }
-  .hero-character__equalizer span:nth-child(5) { animation-delay: -220ms; height: 65%; }
+  .hero-character__equalizer span:nth-child(2) { animation-delay: -300ms; height: 80%; --eq-scale: 0.225; }
+  .hero-character__equalizer span:nth-child(3) { animation-delay: -120ms; height: 55%; --eq-scale: 0.327; }
+  .hero-character__equalizer span:nth-child(4) { animation-delay: -500ms; height: 100%; --eq-scale: 0.18; }
+  .hero-character__equalizer span:nth-child(5) { animation-delay: -220ms; height: 65%; --eq-scale: 0.277; }
 
   .hero-character__orbit {
     position: absolute;
@@ -2643,6 +2647,7 @@
     background: linear-gradient(135deg, rgba(154, 108, 255, 0.72), rgba(66, 232, 211, 0.75));
     box-shadow: 0 0 24px rgba(66, 232, 211, 0.16);
     clip-path: polygon(20% 0, 100% 10%, 83% 87%, 10% 100%, 0 26%);
+    will-change: transform;
   }
 
   .sol-shard svg {
@@ -2709,7 +2714,7 @@
   }
 
   @keyframes equalize {
-    to { height: 18%; }
+    to { transform: scaleY(var(--eq-scale)); }
   }
 
   @keyframes shard-float {
@@ -3102,9 +3107,7 @@
 
   .controls-section {
     overflow: hidden;
-    background:
-      radial-gradient(circle at 15% 85%, rgba(220, 139, 66, 0.09), transparent 26rem),
-      #181a1b;
+    background: transparent;
   }
 
   .controls-section::after {
@@ -3325,7 +3328,6 @@
 
   .features-section {
     overflow: hidden;
-    border-top: 1px solid var(--line);
     background:
       radial-gradient(circle at 75% 40%, rgba(66, 232, 211, 0.045), transparent 25rem),
       #111314;
@@ -4780,7 +4782,7 @@
     border-color: rgba(138, 107, 255, 0.25);
     background: rgba(7, 5, 20, 0.72);
     box-shadow: 0 20px 65px rgba(1, 0, 9, 0.36);
-    backdrop-filter: blur(22px) saturate(150%);
+    backdrop-filter: blur(14px) saturate(140%);
   }
 }
 
@@ -4860,7 +4862,9 @@
   .site-footer {
     min-height: 860px;
     padding-top: 110px;
-    background: #03020a;
+    background:
+      linear-gradient(to bottom, #05030e 0, transparent 80px),
+      #03020a;
   }
 }
 
