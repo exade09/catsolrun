@@ -63,7 +63,7 @@ export function LeaderboardSection() {
           <SectionIntro
             eyebrow="Global leaderboard"
             title={<>Twenty runners<br />One clean line</>}
-            description="The fastest signals are ranked by their best distance. Every finished run also records the SOL notes collected along the way"
+            description="The fastest signals are ranked by their best distance. Every finished run also records the SOL coins collected along the way"
             id="leaderboard-title"
           />
           <div className="leaderboard-profile">
@@ -112,7 +112,7 @@ export function LeaderboardSection() {
                 <table>
                   <caption className="sr-only">Top 20 Meowave runners ranked by best distance</caption>
                   <thead>
-                    <tr><th>Rank</th><th>Runner</th><th>Distance</th><th>SOL Notes</th></tr>
+                    <tr><th>Rank</th><th>Runner</th><th>Distance</th><th>SOL Coins</th></tr>
                   </thead>
                   <tbody>{leaderboard.entries.map((entry) => <LeaderboardRow key={`${entry.rank}-${entry.nickname}`} entry={entry} />)}</tbody>
                 </table>

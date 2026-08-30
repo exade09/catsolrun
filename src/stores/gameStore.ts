@@ -4,7 +4,6 @@ import { createJSONStorage, persist } from 'zustand/middleware'
 import { GAME_CONFIG } from '../game/config/gameConfig'
 import type { PowerUpType } from '../game/types/game'
 import { normalizeNickname } from '../leaderboard/types'
-import { selectActiveRewardProfile, useRewardStore } from './rewardStore'
 
 export type GamePhase =
   | 'loading'
@@ -23,7 +22,6 @@ export interface ActivePowerUp {
 
 export interface FinalStats {
   runId: string
-  rewardAddress: string | null
   score: number
   distance: number
   sol: number
@@ -53,7 +51,6 @@ export interface GameStore extends RunMetrics {
   phase: GamePhase
   countdown: number
   runId: string
-  rewardAddress: string | null
   playerId: string
   nickname: string
   bestScore: number
@@ -94,7 +91,6 @@ export interface GameStore extends RunMetrics {
 
 const EMPTY_FINAL_STATS: FinalStats = {
   runId: '',
-  rewardAddress: null,
   score: 0,
   distance: 0,
   sol: 0,
@@ -153,7 +149,6 @@ const isActive = (powerUp: ActivePowerUp | null, type?: PowerUpType): boolean =>
 
 const finalStatsFrom = (state: GameStore): FinalStats => ({
   runId: state.runId,
-  rewardAddress: state.rewardAddress,
   score: state.score,
   distance: state.distance,
   sol: state.sol,
@@ -170,7 +165,6 @@ export const useGameStore = create<GameStore>()(
       phase: 'loading',
       countdown: 3,
       runId: createPlayerId(),
-      rewardAddress: null,
       playerId: createPlayerId(),
       nickname: '',
       ...runDefaults(),
@@ -188,12 +182,10 @@ export const useGameStore = create<GameStore>()(
 
       startRun: () => {
         pausedAt = null
-        const rewardProfile = selectActiveRewardProfile(useRewardStore.getState())
         set({
           phase: 'countdown',
           countdown: 3,
           runId: createPlayerId(),
-          rewardAddress: rewardProfile?.eligibility === 'eligible' ? rewardProfile.address : null,
           ...runDefaults(),
           activePowerUp: null,
           finalStats: EMPTY_FINAL_STATS,
@@ -209,12 +201,10 @@ export const useGameStore = create<GameStore>()(
 
       restartRun: () => {
         pausedAt = null
-        const rewardProfile = selectActiveRewardProfile(useRewardStore.getState())
         set({
           phase: 'restarting',
           countdown: 3,
           runId: createPlayerId(),
-          rewardAddress: rewardProfile?.eligibility === 'eligible' ? rewardProfile.address : null,
           ...runDefaults(),
           activePowerUp: null,
           finalStats: EMPTY_FINAL_STATS,
@@ -229,7 +219,6 @@ export const useGameStore = create<GameStore>()(
         set({
           phase: 'menu',
           countdown: 3,
-          rewardAddress: null,
           ...runDefaults(),
           activePowerUp: null,
         })

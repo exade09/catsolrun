@@ -8,8 +8,7 @@
     "build": "tsc -b && vite build",
     "preview": "vite preview",
     "typecheck": "tsc -b --pretty false",
-    "check:content": "node scripts/check-content.mjs",
-    "check:rewards": "node scripts/check-reward-economy.mjs"
+    "check:content": "node scripts/check-content.mjs"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.1.0",

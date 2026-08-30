@@ -32,7 +32,7 @@ export function GameHUD() {
       </div>
       <div className="hud-stats">
         <span><b>{Math.floor(distance)} m</b><small>DISTANCE</small></span>
-        <span className="hud-sol"><b><SolMark />{sol}</b><small>SOL NOTES</small></span>
+        <span className="hud-sol"><b><SolMark />{sol}</b><small>SOL COINS</small></span>
         <span><b>{effectiveSpeed.toFixed(1)}</b><small>SPEED</small></span>
       </div>
       <div className={`hud-combo ${combo > 1 ? 'is-active' : ''}`}>

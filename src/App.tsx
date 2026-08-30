@@ -14,6 +14,7 @@ import {
 } from './sections'
 import { retryPendingRun } from './leaderboard/leaderboardApi'
 import { useGameStore, type GamePhase } from './stores/gameStore'
+import { WhitepaperPage } from './whitepaper/WhitepaperPage'
 import './app/app.css'
 
 const GameCanvas = lazy(() => import('./game/GameCanvas'))
@@ -28,7 +29,7 @@ const phaseLabels: Record<GamePhase, string> = {
   restarting: 'Resetting the route',
 }
 
-function App() {
+function MainSite() {
   const phase = useGameStore((state) => state.phase)
   const startRun = useGameStore((state) => state.startRun)
   const resumeGame = useGameStore((state) => state.resumeGame)
@@ -37,6 +38,14 @@ function App() {
   const reducedMotion = useGameStore((state) => state.reducedMotion)
   const nickname = useGameStore((state) => state.nickname)
   const pendingPlayRef = useRef(false)
+
+  useEffect(() => {
+    const sectionId = window.location.hash.slice(1)
+    if (!sectionId) return
+    window.requestAnimationFrame(() => {
+      document.getElementById(sectionId)?.scrollIntoView({ block: 'start' })
+    })
+  }, [])
 
   useEffect(() => {
     const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
@@ -113,6 +122,12 @@ function App() {
       <Footer />
     </>
   )
+}
+
+function App() {
+  return window.location.pathname.toLowerCase() === '/meowave-reward-whitepaper.md'
+    ? <WhitepaperPage />
+    : <MainSite />
 }
 
 export default App

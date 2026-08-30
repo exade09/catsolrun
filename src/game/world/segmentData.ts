@@ -26,7 +26,7 @@ const powerup = (
 ): TrackEntity => ({ id, kind: 'powerup', lane, offset, height: 1.2, powerUpType })
 
 export const SEGMENTS: SegmentDefinition[] = [
-  { id: 0, environment: 'plaza', entities: [sol('reward-note-01-warmup', 0, 8)] },
+  { id: 0, environment: 'plaza', entities: [sol('sol-coin-01-warmup', 0, 8)] },
   {
     id: 1,
     environment: 'plaza',
@@ -41,7 +41,7 @@ export const SEGMENTS: SegmentDefinition[] = [
     id: 3,
     environment: 'dataway',
     entities: [
-      sol('reward-note-02-side-route', 1, 4),
+      sol('sol-coin-02-side-route', 1, 4),
       obstacle('gate-center', 0, 9, 'gate', 'slide'),
       powerup('shield-one', 1, 15, 'shield'),
     ],
@@ -63,7 +63,7 @@ export const SEGMENTS: SegmentDefinition[] = [
     id: 6,
     environment: 'tunnel',
     entities: [
-      sol('reward-note-03-tunnel-line', -1, 3),
+      sol('sol-coin-03-tunnel-line', -1, 3),
       obstacle('crate-right', 1, 17, 'crate', 'lane', true),
     ],
   },
@@ -78,7 +78,7 @@ export const SEGMENTS: SegmentDefinition[] = [
     entities: [
       obstacle('pulse-left', -1, 9, 'pulse', 'lane'),
       obstacle('pulse-center', 0, 9, 'pulse', 'lane'),
-      sol('reward-note-04-pulse-safe', 1, 12),
+      sol('sol-coin-04-pulse-safe', 1, 12),
     ],
   },
   {
@@ -108,7 +108,7 @@ export const SEGMENTS: SegmentDefinition[] = [
     id: 12,
     environment: 'dataway',
     entities: [
-      sol('reward-note-05-data-line', 0, 3),
+      sol('sol-coin-05-data-line', 0, 3),
       obstacle('moving-left', -1, 8, 'crate', 'lane', true),
       obstacle('wall-right', 1, 14, 'wall', 'jump'),
       powerup('double-one', 0, 18, 'doubleSol'),

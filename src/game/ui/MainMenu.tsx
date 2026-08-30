@@ -1,8 +1,10 @@
 import { useState, type FormEvent } from 'react'
-import { audioSystem } from '../systems/audio'
-import { useGameStore } from '../../stores/gameStore'
-import { selectActiveRewardProfile, useRewardStore } from '../../stores/rewardStore'
+
 import { getNicknameError, NICKNAME_MAX_LENGTH, normalizeNickname } from '../../leaderboard/types'
+import { useGameStore } from '../../stores/gameStore'
+import { useWallet } from '../../wallet/WalletProvider'
+import { shortenWalletAddress } from '../../wallet/phantom'
+import { audioSystem } from '../systems/audio'
 import { SoundIcon, SolMark } from './GameIcons'
 
 export function MainMenu() {
@@ -11,7 +13,7 @@ export function MainMenu() {
   const bestScore = useGameStore((state) => state.bestScore)
   const nickname = useGameStore((state) => state.nickname)
   const setNickname = useGameStore((state) => state.setNickname)
-  const rewardProfile = useRewardStore(selectActiveRewardProfile)
+  const { address, connect, installed, status, verified } = useWallet()
   const [showInstructions, setShowInstructions] = useState(false)
   const [editingNickname, setEditingNickname] = useState(nickname.length === 0)
   const [nicknameDraft, setNicknameDraft] = useState(nickname)
@@ -29,9 +31,9 @@ export function MainMenu() {
 
   const saveNicknameAndStart = (event: FormEvent<HTMLFormElement>): void => {
     event.preventDefault()
-    const error = getNicknameError(nicknameDraft)
-    if (error) {
-      setNicknameError(error)
+    const nextError = getNicknameError(nicknameDraft)
+    if (nextError) {
+      setNicknameError(nextError)
       return
     }
     setNickname(normalizeNickname(nicknameDraft))
@@ -44,35 +46,35 @@ export function MainMenu() {
 
   if (editingNickname) {
     return (
-      <div className="game-overlay nickname-overlay" role="dialog" aria-modal="true" aria-labelledby="nickname-title">
-        <span className="menu-sol"><SolMark /></span>
-        <p className="game-eyebrow">NEW RUNNER DETECTED</p>
-        <h3 id="nickname-title">Choose your nickname</h3>
-        <p className="nickname-copy">This name will identify your best run on the global leaderboard</p>
-        <form className="nickname-form" onSubmit={saveNicknameAndStart}>
-          <label htmlFor="runner-nickname">Runner nickname</label>
+      <div className='game-overlay nickname-overlay' role='dialog' aria-modal='true' aria-labelledby='nickname-title'>
+        <span className='menu-sol'><SolMark /></span>
+        <p className='game-eyebrow'>NEW RUNNER DETECTED</p>
+        <h3 id='nickname-title'>Choose your nickname</h3>
+        <p className='nickname-copy'>This name identifies your best run on the global leaderboard</p>
+        <form className='nickname-form' onSubmit={saveNicknameAndStart}>
+          <label htmlFor='runner-nickname'>Runner nickname</label>
           <input
-            id="runner-nickname"
-            autoComplete="nickname"
+            id='runner-nickname'
+            autoComplete='nickname'
             autoFocus
             maxLength={NICKNAME_MAX_LENGTH}
-            placeholder="MEOWRUNNER"
+            placeholder='MEOWRUNNER'
             spellCheck={false}
             value={nicknameDraft}
-            aria-describedby="nickname-help"
+            aria-describedby='nickname-help'
             aria-invalid={nicknameError !== null}
             onChange={(event) => {
               setNicknameDraft(event.target.value)
               if (nicknameError) setNicknameError(null)
             }}
           />
-          <p id="nickname-help" className={nicknameError ? 'nickname-help is-error' : 'nickname-help'}>
-            {nicknameError ?? `2–${NICKNAME_MAX_LENGTH} characters · letters, numbers, spaces, _ or -`}
+          <p id='nickname-help' className={nicknameError ? 'nickname-help is-error' : 'nickname-help'}>
+            {nicknameError ?? ('2 to ' + NICKNAME_MAX_LENGTH + ' characters / letters, numbers, spaces, _ or -')}
           </p>
-          <div className="menu-actions">
-            <button className="game-button game-button-primary" type="submit">Save &amp; Start Run</button>
+          <div className='menu-actions'>
+            <button className='game-button game-button-primary' type='submit'>Save &amp; Start Run</button>
             {nickname && (
-              <button className="game-button game-button-quiet" type="button" onClick={() => setEditingNickname(false)}>
+              <button className='game-button game-button-quiet' type='button' onClick={() => setEditingNickname(false)}>
                 Cancel
               </button>
             )}
@@ -84,35 +86,35 @@ export function MainMenu() {
 
   if (showInstructions) {
     return (
-      <div className="game-overlay menu-overlay instruction-panel" role="dialog" aria-modal="false" aria-labelledby="quick-guide-title">
-        <p className="game-eyebrow">RUNNER FIELD GUIDE</p>
-        <h3 id="quick-guide-title">Stay with the rhythm</h3>
-        <div className="quick-guide-grid">
+      <div className='game-overlay menu-overlay instruction-panel' role='dialog' aria-modal='false' aria-labelledby='quick-guide-title'>
+        <p className='game-eyebrow'>RUNNER FIELD GUIDE</p>
+        <h3 id='quick-guide-title'>Read the route</h3>
+        <div className='quick-guide-grid'>
           <span><kbd>A</kbd><kbd>D</kbd><b>Switch lanes</b></span>
           <span><kbd>W</kbd><kbd>Space</kbd><b>Jump</b></span>
           <span><kbd>S</kbd><b>Slide</b></span>
           <span><kbd>P</kbd><b>Pause</b></span>
         </div>
-        <p>Swipe on the game to move on touch devices. Follow warning arrows, chain SOL notes, and use signal power-ups</p>
-        <button className="game-button game-button-primary" type="button" onClick={() => setShowInstructions(false)}>Back to menu</button>
+        <p>Swipe on touch devices. Follow warning arrows, collect SOL coins, and use signal power-ups.</p>
+        <button className='game-button game-button-primary' type='button' onClick={() => setShowInstructions(false)}>Back to menu</button>
       </div>
     )
   }
 
   return (
-    <div className="game-overlay menu-overlay">
-      <div className="menu-lockup">
-        <span className="menu-sol"><SolMark /></span>
-        <p className="game-eyebrow">THE SIGNAL IS LIVE</p>
+    <div className='game-overlay menu-overlay'>
+      <div className='menu-lockup'>
+        <span className='menu-sol'><SolMark /></span>
+        <p className='game-eyebrow'>THE SIGNAL IS LIVE</p>
         <h2>MEOWAVE</h2>
-        <p>Catch the rhythm. Outrun the fading signal</p>
+        <p>Dodge the route. Collect SOL coins. Keep the run alive.</p>
       </div>
-      {bestScore > 0 && <p className="menu-best"><span>PERSONAL BEST</span>{bestScore.toLocaleString('en-US')}</p>}
-      <div className="menu-player">
+      {bestScore > 0 && <p className='menu-best'><span>PERSONAL BEST</span>{bestScore.toLocaleString('en-US')}</p>}
+      <div className='menu-player'>
         <span>RUNNING AS</span>
         <strong>{nickname}</strong>
         <button
-          type="button"
+          type='button'
           onClick={() => {
             setNicknameDraft(nickname)
             setEditingNickname(true)
@@ -121,22 +123,31 @@ export function MainMenu() {
           Change
         </button>
       </div>
-      <a
-        className={`menu-reward-status${rewardProfile?.eligibility === 'eligible' ? ' is-eligible' : ''}`}
-        href="#rewards"
-      >
-        <span>{rewardProfile?.eligibility === 'eligible' ? 'DEMO REWARDS ACTIVE' : 'TRIAL MODE'}</span>
-        <strong>{rewardProfile?.eligibility === 'eligible' ? 'Eligible runs can add Demo SOL' : 'Play freely / no persistent run credit'}</strong>
-      </a>
-      <div className="menu-actions">
-        <button className="game-button game-button-primary" type="button" onClick={start}>Start Run</button>
-        <button className="game-button" type="button" onClick={() => setShowInstructions(true)}>How to Play</button>
-        <button className="game-icon-button menu-audio" type="button" onClick={() => void audioSystem.toggle()} aria-label={audioEnabled ? 'Turn audio off' : 'Turn audio on'}>
+      {address ? (
+        <a className={'menu-reward-status' + (verified ? ' is-eligible' : '')} href='#rewards'>
+          <span>{verified ? 'WALLET VERIFIED' : 'PHANTOM CONNECTED'}</span>
+          <strong>{shortenWalletAddress(address)} / Open wallet hub</strong>
+        </a>
+      ) : (
+        <button
+          className='menu-reward-status'
+          type='button'
+          disabled={status === 'connecting'}
+          onClick={() => void connect()}
+        >
+          <span>{installed ? 'LINK YOUR RUNNER' : 'PHANTOM REQUIRED'}</span>
+          <strong>{status === 'connecting' ? 'Check Phantom' : installed ? 'Connect wallet' : 'Open official download'}</strong>
+        </button>
+      )}
+      <div className='menu-actions'>
+        <button className='game-button game-button-primary' type='button' onClick={start}>Start Run</button>
+        <button className='game-button' type='button' onClick={() => setShowInstructions(true)}>How to Play</button>
+        <button className='game-icon-button menu-audio' type='button' onClick={() => void audioSystem.toggle()} aria-label={audioEnabled ? 'Turn audio off' : 'Turn audio on'}>
           <SoundIcon muted={!audioEnabled} />
           <span>Audio {audioEnabled ? 'On' : 'Off'}</span>
         </button>
       </div>
-      <p className="collectible-notice">SOL notes score the run. Demo SOL rewards are simulated and never transfer cryptocurrency</p>
+      <p className='collectible-notice'>SOL coins power the score. Wallet actions are always requested through Phantom.</p>
     </div>
   )
 }

@@ -51,7 +51,7 @@ export function StorySection() {
             <p>
               Then, one night, a Solana signal entered the headphones. It opened a geometric
               world built from rhythm, speed, and glowing fragments. Now Meowave runs through
-              the chain, collecting lost SOL notes before the signal fades
+              the chain, collecting lost SOL coins before the signal fades
             </p>
           </div>
           <blockquote>
