@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react'
 
 import { BrandMark } from './BrandMark'
+import { ContractBadge } from './ContractBadge'
 import { Icon } from './Icon'
 import { WalletButton } from './WalletButton'
 
@@ -39,6 +40,8 @@ export function Header({ onPlay, socialLinks }: HeaderProps) {
       <a className='site-header__brand' href='#top' onClick={closeMenu}>
         <BrandMark />
       </a>
+
+      <ContractBadge compact className='site-header__contract' />
 
       <button
         ref={menuButtonRef}

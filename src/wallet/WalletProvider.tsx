@@ -9,6 +9,7 @@ import {
   type ReactNode,
 } from 'react'
 
+import { TOKEN_MINT } from '../config/token'
 import {
   getPhantomProvider,
   PHANTOM_DOWNLOAD_URL,
@@ -70,8 +71,10 @@ const getRpcEndpoint = (): string => {
 }
 
 const getEligibilityTokenMint = (): string | null => {
+  // The published MWAVE mint is the default; the env var stays as an override
+  // for staging against a different mint.
   const configured = import.meta.env.VITE_ELIGIBILITY_TOKEN_MINT?.trim()
-  return configured || null
+  return configured || TOKEN_MINT
 }
 
 const walletErrorMessage = (error: unknown): string => {

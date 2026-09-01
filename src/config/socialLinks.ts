@@ -1,3 +1,5 @@
+import { tokenLinks } from "./token";
+
 export type SocialPlatform = "telegram" | "x" | "pump" | "dexscreener";
 
 export interface SocialLink {
@@ -15,16 +17,16 @@ export const socialLinks = [
   {
     platform: "x",
     label: "X",
-    href: "https://x.com/",
+    href: "https://x.com/PlayMeowave",
   },
   {
     platform: "pump",
     label: "Pump.fun",
-    href: "https://pump.fun/",
+    href: tokenLinks.pumpFun,
   },
   {
     platform: "dexscreener",
     label: "DEX Screener",
-    href: "https://dexscreener.com/",
+    href: tokenLinks.dexScreener,
   },
 ] as const satisfies readonly SocialLink[];

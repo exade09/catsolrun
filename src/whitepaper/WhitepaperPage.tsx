@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 
 import { BrandMark } from '../components/BrandMark'
 import { ScannerBackdrop } from '../components/ScannerBackdrop'
+import { TOKEN_CHAIN, TOKEN_MINT, TOKEN_TICKER } from '../config/token'
 
 const navigation = [
   ['01', 'Purpose', 'purpose'],
@@ -110,8 +111,11 @@ export function WhitepaperPage() {
             <aside className='whitepaper-callout'>
               <strong>Token contract</strong>
               <p>
-                The official mint address will be published with the reward launch. Any address
-                not matching that mint must be ignored by the eligibility service.
+                The official {TOKEN_TICKER} mint on {TOKEN_CHAIN} is:
+              </p>
+              <code className='whitepaper-callout__mint'>{TOKEN_MINT}</code>
+              <p>
+                Any address not matching this mint must be ignored by the eligibility service.
               </p>
             </aside>
           </section>
@@ -190,8 +194,8 @@ export function WhitepaperPage() {
             </div>
             <p className='whitepaper-document__status'>
               Wallet connection, ownership signing, live mainnet balance, and automatic token
-              eligibility checks are implemented. Reward distribution opens after the official
-              token mint, validated reward service, and funded treasury are configured.
+              eligibility checks against the published {TOKEN_TICKER} mint are implemented. Reward
+              distribution opens once the validated reward service and funded treasury are live.
             </p>
           </section>
         </article>

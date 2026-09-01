@@ -1,4 +1,5 @@
 import { BrandMark } from './BrandMark'
+import { ContractBadge } from './ContractBadge'
 import { ScannerBackdrop } from './ScannerBackdrop'
 
 export function Footer() {
@@ -18,7 +19,7 @@ export function Footer() {
         <a href='#top' className='site-footer__brand'>
           <BrandMark />
         </a>
-        <p>A low-poly runner built on the Solana signal</p>
+        <ContractBadge className='site-footer__contract' />
         <a className='site-footer__back' href='#top'>
           Back to top <span aria-hidden='true'>/</span>
         </a>

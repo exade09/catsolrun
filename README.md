@@ -56,6 +56,18 @@ VITE_ELIGIBILITY_TOKEN_MINT=
 
 Use a dedicated Solana RPC provider in production because the public mainnet endpoint is rate-limited.
 
+`VITE_ELIGIBILITY_TOKEN_MINT` is optional. The published `$MWAVE` mint is compiled in through
+`src/config/token.ts`, which is also the single source for the contract address rendered across the
+header, hero, tokenomics section, whitepaper, and the Pump.fun / DEX Screener / Solscan links.
+
+## Token
+
+| Field | Value |
+| --- | --- |
+| Ticker | `$MWAVE` |
+| Chain | Solana Mainnet |
+| Mint | `5QJ6fJWzeJedcFra6pZwkU1HUz5RSAf1p7KkyooBpump` |
+
 ## Scripts
 
 | Command | Purpose |

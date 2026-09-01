@@ -3,8 +3,10 @@ import type { SVGProps } from 'react'
 export type IconName =
   | 'arrow-down'
   | 'arrow-up'
+  | 'check'
   | 'chevron'
   | 'coin'
+  | 'copy'
   | 'headphones'
   | 'lanes'
   | 'magnet'
@@ -93,6 +95,13 @@ export function Icon({ name, title, ...props }: IconProps) {
           <path d='M16 13h4v3h-4a1.5 1.5 0 0 1 0-3Z' />
         </>
       )}
+      {name === 'copy' && (
+        <>
+          <rect x='9' y='9' width='11' height='11' rx='2' />
+          <path d='M15 5.5A1.5 1.5 0 0 0 13.5 4h-8A1.5 1.5 0 0 0 4 5.5v8A1.5 1.5 0 0 0 5.5 15' />
+        </>
+      )}
+      {name === 'check' && <path d='m5 12.5 4.5 4.5L19 7.5' />}
     </svg>
   )
 }

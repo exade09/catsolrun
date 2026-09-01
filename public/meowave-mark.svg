@@ -5,11 +5,6 @@
       <stop stop-color="#29272d"/>
       <stop offset="1" stop-color="#111317"/>
     </linearGradient>
-    <linearGradient id="wave" x1="26" y1="79" x2="70" y2="79" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#78f5b0"/>
-      <stop offset=".5" stop-color="#51e5e7"/>
-      <stop offset="1" stop-color="#a779ff"/>
-    </linearGradient>
   </defs>
   <path fill="url(#bg)" d="M17 5h61l13 17-5 59-18 10H20L5 74 8 19Z"/>
   <path fill="#b86534" d="m22 40 3-27 20 15 9-1 18-14 4 28-8 34-39-1Z"/>
@@ -23,5 +18,4 @@
   <path fill="#393c40" d="m18 49 5-2v17l-5-2Zm55-2 5 2v13l-5 2Z"/>
   <path fill="#d68c7e" d="m43 57 5-3 5 3-5 5Z"/>
   <path fill="#3a2e2a" d="m48 62 7 3-7 5-7-5Z"/>
-  <path fill="url(#wave)" d="M24 80h37l-5 5H19Zm16-8h37l-5 5H35Zm2 16h31l-5 4H37Z"/>
 </svg>

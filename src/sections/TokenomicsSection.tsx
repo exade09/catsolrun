@@ -1,10 +1,17 @@
 import catProfile from '../assets/poses/meowave-profile.jpg'
-import { SectionIntro } from '../components'
+import { ContractBadge, SectionIntro } from '../components'
+import { TOKEN_TICKER, tokenLinks } from '../config/token'
 
 const tokenFacts = [
-  { label: 'Ticker', value: '$MWAVE', tone: 'orange' },
+  { label: 'Ticker', value: TOKEN_TICKER, tone: 'orange' },
   { label: 'Supply', value: '1B', tone: 'cyan' },
   { label: 'Blockchain', value: 'Solana', tone: 'violet' },
+] as const
+
+const tokenExplorers = [
+  { label: 'Pump.fun', href: tokenLinks.pumpFun },
+  { label: 'DEX Screener', href: tokenLinks.dexScreener },
+  { label: 'Solscan', href: tokenLinks.solscan },
 ] as const
 
 export function TokenomicsSection() {
@@ -24,8 +31,21 @@ export function TokenomicsSection() {
             description='A compact snapshot of the Meowave token architecture on Solana. Clear numbers, no fictional chain metrics.'
             id='tokenomics-title'
           />
+          <div className='tokenomics-section__contract'>
+            <span className='tokenomics-section__contract-label'>Contract address / Solana Mainnet</span>
+            <ContractBadge />
+            <ul className='tokenomics-section__explorers'>
+              {tokenExplorers.map((explorer) => (
+                <li key={explorer.label}>
+                  <a href={explorer.href} target='_blank' rel='noreferrer noopener'>
+                    {explorer.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
           <p className='tokenomics-section__note'>
-            Contract address, allocation, vesting, and claim rules will be published only after the mainnet deployment is complete.
+            Always verify the mint above before trading. Allocation, vesting, and claim rules are published with the reward service rollout.
           </p>
         </div>
 

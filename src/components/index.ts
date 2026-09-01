@@ -1,5 +1,8 @@
 export { BrandMark } from './BrandMark'
+export { ContractBadge } from './ContractBadge'
+export type { ContractBadgeProps } from './ContractBadge'
 export { Footer } from './Footer'
+export { HeroBackdrop } from './HeroBackdrop'
 export { Header } from './Header'
 export type { HeaderProps } from './Header'
 export { Hero } from './Hero'
