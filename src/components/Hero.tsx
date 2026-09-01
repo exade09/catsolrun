@@ -40,10 +40,10 @@ export function Hero({ onPlay }: HeroProps) {
             <span aria-hidden='true'>MEO</span>
             <span className='hero__title-run' aria-hidden='true'>WAVE</span>
           </h1>
-          <p className='hero__tagline'>Run the signal. Collect SOL coins. Own every move.</p>
+          <p className='hero__tagline'>Run the signal. Collect SOL coins. Own every move</p>
           <p className='hero__description'>
             Guide a low-poly cat through a shifting three-lane route, stack SOL coins,
-            climb the leaderboard, and link the run to Phantom.
+            climb the leaderboard, and link the run to Phantom
           </p>
 
           <div className='hero__actions'>

@@ -95,7 +95,7 @@ export function MainMenu() {
           <span><kbd>S</kbd><b>Slide</b></span>
           <span><kbd>P</kbd><b>Pause</b></span>
         </div>
-        <p>Swipe on touch devices. Follow warning arrows, collect SOL coins, and use signal power-ups.</p>
+        <p>Swipe on touch devices. Follow warning arrows, collect SOL coins, and use signal power-ups</p>
         <button className='game-button game-button-primary' type='button' onClick={() => setShowInstructions(false)}>Back to menu</button>
       </div>
     )
@@ -107,7 +107,7 @@ export function MainMenu() {
         <span className='menu-sol'><SolMark /></span>
         <p className='game-eyebrow'>THE SIGNAL IS LIVE</p>
         <h2>MEOWAVE</h2>
-        <p>Dodge the route. Collect SOL coins. Keep the run alive.</p>
+        <p>Dodge the route. Collect SOL coins. Keep the run alive</p>
       </div>
       {bestScore > 0 && <p className='menu-best'><span>PERSONAL BEST</span>{bestScore.toLocaleString('en-US')}</p>}
       <div className='menu-player'>
@@ -147,7 +147,7 @@ export function MainMenu() {
           <span>Audio {audioEnabled ? 'On' : 'Off'}</span>
         </button>
       </div>
-      <p className='collectible-notice'>SOL coins power the score. Wallet actions are always requested through Phantom.</p>
+      <p className='collectible-notice'>SOL coins power the score. Wallet actions are always requested through Phantom</p>
     </div>
   )
 }

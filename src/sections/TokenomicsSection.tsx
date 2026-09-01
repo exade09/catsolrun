@@ -28,7 +28,7 @@ export function TokenomicsSection() {
           <SectionIntro
             eyebrow='Tokenomics'
             title={<>One signal<br />A billion waves</>}
-            description='A compact snapshot of the Meowave token architecture on Solana. Clear numbers, no fictional chain metrics.'
+            description='A compact snapshot of the Meowave token architecture on Solana. Clear numbers, no fictional chain metrics'
             id='tokenomics-title'
           />
           <div className='tokenomics-section__contract'>
@@ -45,7 +45,7 @@ export function TokenomicsSection() {
             </ul>
           </div>
           <p className='tokenomics-section__note'>
-            Always verify the mint above before trading. Allocation, vesting, and claim rules are published with the reward service rollout.
+            Always verify the mint above before trading. Allocation, vesting, and claim rules are published with the reward service rollout
           </p>
         </div>
 

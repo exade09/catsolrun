@@ -136,7 +136,7 @@ export function WithdrawPanel() {
       <footer className='withdraw-panel__footer'>
         <p>
           The connected Phantom address is always used as the destination. Withdrawals unlock only after
-          wallet eligibility, earned balance, and the reward treasury are confirmed.
+          wallet eligibility, earned balance, and the reward treasury are confirmed
         </p>
         <a href='/MEOWAVE-REWARD-WHITEPAPER.md' target='_blank' rel='noreferrer'>
           Read reward whitepaper <span aria-hidden='true'>/</span>

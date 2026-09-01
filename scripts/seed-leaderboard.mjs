@@ -12,7 +12,7 @@ const SEED = [
   { playerId: '7f3a1c94-2b6d-4e18-9a4f-0c51d8e37b62', nickname: '0xLunavia', distance: 4820, sol: 96 },
   { playerId: '1d8b52e7-9f04-4c3a-b7e1-6a2f90d4c815', nickname: 'hodxx', distance: 4185, sol: 84 },
   { playerId: '5c2e70a3-84b1-4d69-8f30-e91a5b7c2064', nickname: '彈珠台', distance: 3670, sol: 74 },
-  { playerId: '9a41d6b8-3e52-47fc-a015-7d8e2c96b143', nickname: 'Rondi', distance: 2945, sol: 59 },
+  { playerId: '9a41d6b8-3e52-47fc-a015-7d8e2c96b143', nickname: 'neosol', distance: 2945, sol: 59 },
   { playerId: '2e690f47-c1a8-4b53-9d26-4f70a3e18d5c', nickname: 'mintdrifter', distance: 2130, sol: 43 },
 ]
 

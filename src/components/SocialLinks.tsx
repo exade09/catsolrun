@@ -11,25 +11,6 @@ interface SocialMarkProps {
 }
 
 function PlatformGlyph({ platform }: SocialMarkProps) {
-  if (platform === "telegram") {
-    return (
-      <>
-        <path
-          className="social-links__brand-shape social-links__brand-shape--telegram"
-          d="m6.5 15.1 18.9-7.3-3.2 17.1-6.4-5-3.4 3.3.6-5.8 9.7-6-11.9 4.7-5.2-1Z"
-          fill="#f5f7ff"
-        />
-        <path
-          className="social-links__brand-detail"
-          d="m13 17.4 9.7-6-7.9 7.6"
-          stroke="#55dfff"
-          strokeWidth="1.2"
-          strokeLinejoin="bevel"
-        />
-      </>
-    );
-  }
-
   if (platform === "x") {
     return (
       <>

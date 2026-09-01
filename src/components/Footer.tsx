@@ -12,7 +12,7 @@ export function Footer() {
       <div className='site-footer__cta'>
         <span>THE ROUTE IS STILL OPEN</span>
         <h2>One more run?</h2>
-        <p>Collect SOL coins, sharpen your line, and return to the signal.</p>
+        <p>Collect SOL coins, sharpen your line, and return to the signal</p>
         <a className='button button--primary' href='#game'>Play Meowave</a>
       </div>
       <div className='site-footer__top'>
@@ -26,8 +26,8 @@ export function Footer() {
       </div>
       <div className='site-footer__line' />
       <div className='site-footer__bottom'>
-        <p>&copy; {year} MEOWAVE. Built for play.</p>
-        <p>Wallet actions stay inside Phantom.</p>
+        <p>&copy; {year} MEOWAVE. Built for play</p>
+        <p>Wallet actions stay inside Phantom</p>
         <nav aria-label='Footer navigation'>
           <a href='#game'>Game</a>
           <a href='#rewards'>Wallet</a>

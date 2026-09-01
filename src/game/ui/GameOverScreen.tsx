@@ -82,7 +82,7 @@ export function GameOverScreen() {
         <button className='game-button' type='button' onClick={() => void share()}>{shareStatus}</button>
         <button className='game-button game-button-quiet' type='button' onClick={returnToMenu}>Return to Menu</button>
       </div>
-      <p className='collectible-notice'>A completed run never creates a transaction or moves wallet funds.</p>
+      <p className='collectible-notice'>A completed run never creates a transaction or moves wallet funds</p>
     </div>
   )
 }

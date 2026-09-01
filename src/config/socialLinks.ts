@@ -1,6 +1,6 @@
 import { tokenLinks } from "./token";
 
-export type SocialPlatform = "telegram" | "x" | "pump" | "dexscreener";
+export type SocialPlatform = "x" | "pump" | "dexscreener";
 
 export interface SocialLink {
   platform: SocialPlatform;
@@ -9,11 +9,6 @@ export interface SocialLink {
 }
 
 export const socialLinks = [
-  {
-    platform: "telegram",
-    label: "Telegram",
-    href: "https://t.me/",
-  },
   {
     platform: "x",
     label: "X",

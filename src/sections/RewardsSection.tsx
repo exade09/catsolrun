@@ -13,22 +13,22 @@ const rewardRoute = [
   {
     number: '01',
     title: 'Run',
-    copy: 'Survive the three-lane route and build a clean score through movement, timing, and risk.',
+    copy: 'Survive the three-lane route and build a clean score through movement, timing, and risk',
   },
   {
     number: '02',
     title: 'Collect',
-    copy: 'Pick up SOL coins during the run. Every coin also pushes your score and leaderboard result.',
+    copy: 'Pick up SOL coins during the run. Every coin also pushes your score and leaderboard result',
   },
   {
     number: '03',
     title: 'Verify',
-    copy: 'Connect Phantom and sign a message to bind the run identity to a wallet you control.',
+    copy: 'Connect Phantom and sign a message to bind the run identity to a wallet you control',
   },
   {
     number: '04',
     title: 'Claim',
-    copy: 'On-chain claims activate only through an explicit Phantom confirmation when the reward treasury goes live.',
+    copy: 'On-chain claims activate only through an explicit Phantom confirmation when the reward treasury goes live',
   },
 ]
 
@@ -68,7 +68,7 @@ export function RewardsSection() {
           <SectionIntro
             eyebrow='Wallet / Phantom'
             title={<>One wallet.<br />One runner.</>}
-            description='Connect a real Solana wallet, read its mainnet balance, and prove ownership with a message signature. Phantom keeps your keys under your control.'
+            description='Connect a real Solana wallet, read its mainnet balance, and prove ownership with a message signature. Phantom keeps your keys under your control'
             id='rewards-title'
           />
           <div className='wallet-trust-list' aria-label='Wallet connection guarantees'>
@@ -98,7 +98,7 @@ export function RewardsSection() {
                 </div>
                 <div>
                   <strong>Phantom wallet</strong>
-                  <p>Approve a standard wallet connection. The site receives only your public Solana address.</p>
+                  <p>Approve a standard wallet connection. The site receives only your public Solana address</p>
                 </div>
                 <button
                   className='button button--primary'
@@ -139,7 +139,7 @@ export function RewardsSection() {
                     {verified ? 'Ownership verified for this session' : 'Ownership signature required'}
                   </span>
                   <p>
-                    Signing confirms control of this address. It is not a transaction and cannot move funds.
+                    Signing confirms control of this address. It is not a transaction and cannot move funds
                   </p>
                 </div>
 
@@ -212,7 +212,7 @@ export function RewardsSection() {
             <p>
               Wallet connection, live balance reading, and signed ownership are active. Reward claims remain
               unavailable until the distribution treasury and claim contract are deployed. When enabled, every
-              transfer will require a visible Phantom transaction confirmation.
+              transfer will require a visible Phantom transaction confirmation
             </p>
           </aside>
         </div>
