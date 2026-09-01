@@ -1,6 +1,5 @@
 import catFront from '../assets/poses/meowave-front.jpg'
 import { ContractBadge } from './ContractBadge'
-import { HeroBackdrop } from './HeroBackdrop'
 import { Icon } from './Icon'
 
 export interface HeroProps {
@@ -10,7 +9,19 @@ export interface HeroProps {
 export function Hero({ onPlay }: HeroProps) {
   return (
     <section className='hero' id='top' aria-labelledby='hero-title'>
-      <HeroBackdrop />
+      <video
+        className='hero__video'
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload='auto'
+        disablePictureInPicture
+        controlsList='nodownload noplaybackrate'
+        aria-hidden='true'
+      >
+        <source src='/meowave-hero-loop.mp4' type='video/mp4' />
+      </video>
       <div className='hero__video-shade' aria-hidden='true' />
       <div className='hero__ambient' aria-hidden='true'>
         <span className='hero__grid' />

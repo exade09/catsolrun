@@ -774,18 +774,15 @@
     background: #070414;
   }
 
-  .hero__backdrop {
+  .hero__video {
     position: absolute;
     z-index: 0;
     inset: 0;
     width: 100%;
     height: 100%;
-    opacity: 0;
-    transition: opacity 700ms ease;
-  }
-
-  .hero__backdrop.is-ready {
-    opacity: 0.92;
+    object-fit: cover;
+    opacity: 0.88;
+    transform: translateZ(0);
   }
 
   .hero__video-shade {
@@ -1294,8 +1291,8 @@
   }
 
   @media (max-width: 720px) {
-    .hero__backdrop.is-ready {
-      opacity: 0.78;
+    .hero__video {
+      opacity: 0.72;
     }
 
     .hero__video-shade {
