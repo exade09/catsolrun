@@ -49,11 +49,15 @@ void main() {
   float mountain = smoothstep(0.035, 0.0, abs(uv.y + 0.08 - ridge * 0.62));
   float scan = 0.0;
 
+  // The per-band wobble used to call fbm() (5 octaves x 4 hashes) 64 times per
+  // pixel. Two sines read the same at this amplitude for a fraction of the cost.
   for (int band = 0; band < 64; band++) {
     float fi = float(band);
     float depth = fract(fi / 64.0 - u_time * 0.055);
     float perspectiveY = -0.86 + pow(depth, 2.35) * 1.02;
-    float terrain = fbm(vec2(uv.x * (1.0 + depth * 5.0), fi * 0.23)) * 0.10 * depth;
+    float wob = uv.x * (1.0 + depth * 5.0);
+    float terrain = (sin(wob * 3.1 + fi * 0.91) * 0.32 + sin(wob * 1.3 - fi * 0.47) * 0.18 + 0.5)
+      * 0.10 * depth;
     scan += smoothstep(0.016, 0.0, abs(uv.y - perspectiveY - terrain)) * depth;
   }
 
@@ -120,30 +124,84 @@ export function ScannerBackdrop() {
     const time = gl.getUniformLocation(program, 'u_time')
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     let frame = 0
+    let visible = false
+    let running = false
 
+    // Reading clientWidth costs a forced layout flush, so it is driven by
+    // ResizeObserver instead of being sampled inside the render loop.
     const resize = () => {
-      const ratio = Math.min(window.devicePixelRatio || 1, 1.5)
+      const ratio = Math.min(window.devicePixelRatio || 1, 1.25)
       const width = Math.max(1, Math.floor(canvas.clientWidth * ratio))
       const height = Math.max(1, Math.floor(canvas.clientHeight * ratio))
-      if (canvas.width !== width || canvas.height !== height) {
-        canvas.width = width
-        canvas.height = height
-      }
+      if (canvas.width === width && canvas.height === height) return
+      canvas.width = width
+      canvas.height = height
       gl.viewport(0, 0, width, height)
+      gl.useProgram(program)
+      gl.uniform2f(resolution, width, height)
+    }
+
+    const render = (seconds: number) => {
+      gl.useProgram(program)
+      gl.uniform1f(time, seconds)
+      gl.drawArrays(gl.TRIANGLES, 0, 3)
     }
 
     const draw = (now: number) => {
-      resize()
-      gl.useProgram(program)
-      gl.uniform2f(resolution, canvas.width, canvas.height)
-      gl.uniform1f(time, reducedMotion ? 4.0 : now * 0.001)
-      gl.drawArrays(gl.TRIANGLES, 0, 3)
-      if (!reducedMotion) frame = window.requestAnimationFrame(draw)
+      render(now * 0.001)
+      frame = window.requestAnimationFrame(draw)
     }
 
-    frame = window.requestAnimationFrame(draw)
-    return () => {
+    const stop = () => {
+      if (!running) return
+      running = false
       window.cancelAnimationFrame(frame)
+    }
+
+    const play = () => {
+      if (running || !visible || document.hidden || reducedMotion) return
+      running = true
+      frame = window.requestAnimationFrame(draw)
+    }
+
+    resize()
+    render(4.0)
+
+    const resizeObserver = new ResizeObserver(() => {
+      resize()
+      if (!running) render(4.0)
+    })
+    resizeObserver.observe(canvas)
+
+    // The footer sits far below the fold; without this the scene rendered at
+    // full rate for the entire session while completely off-screen.
+    const intersectionObserver = new IntersectionObserver(
+      ([entry]) => {
+        visible = entry.isIntersecting
+        if (visible) play()
+        else stop()
+      },
+      { threshold: 0 },
+    )
+    intersectionObserver.observe(canvas)
+
+    const onVisibility = () => {
+      if (document.hidden) stop()
+      else play()
+    }
+    const onContextLost = (event: Event) => {
+      event.preventDefault()
+      stop()
+    }
+    document.addEventListener('visibilitychange', onVisibility)
+    canvas.addEventListener('webglcontextlost', onContextLost)
+
+    return () => {
+      stop()
+      resizeObserver.disconnect()
+      intersectionObserver.disconnect()
+      document.removeEventListener('visibilitychange', onVisibility)
+      canvas.removeEventListener('webglcontextlost', onContextLost)
       gl.deleteBuffer(buffer)
       gl.deleteProgram(program)
     }

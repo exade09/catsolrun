@@ -1374,17 +1374,6 @@
 }
 
 @layer components {
-  .brand-mark__symbol {
-    position: relative;
-    filter: drop-shadow(0 7px 13px rgba(0, 0, 0, 0.32));
-  }
-
-  .brand-mark__symbol img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-  }
-
   .brand-mark__type {
     line-height: 0.86;
   }
@@ -2085,17 +2074,6 @@
   .brand-mark {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
-  }
-
-  .brand-mark__symbol {
-    width: 38px;
-    aspect-ratio: 1;
-    transition: transform 220ms var(--ease-out);
-  }
-
-  a:hover .brand-mark__symbol {
-    transform: rotate(-4deg) scale(1.03);
   }
 
   .brand-mark__type {
@@ -4100,10 +4078,6 @@
     .site-header {
       min-height: var(--header-height);
       padding-left: 13px;
-    }
-
-    .brand-mark__symbol {
-      width: 34px;
     }
 
     .site-header__panel {

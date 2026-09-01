@@ -156,8 +156,9 @@ export function HeroBackdrop() {
       gl.drawArrays(gl.TRIANGLES, 0, 3)
     }
 
+    // resize() reads clientWidth, which forces a layout flush; keeping it out of
+    // the render loop is the difference between ~3ms and ~0ms of CPU per frame.
     const loop = () => {
-      resize()
       draw((performance.now() - start) / 1000)
       frame = window.requestAnimationFrame(loop)
     }
@@ -207,19 +208,24 @@ export function HeroBackdrop() {
       stop()
     }
 
+    const resizeObserver = new ResizeObserver(() => {
+      resize()
+      if (!running) draw(0)
+    })
+    resizeObserver.observe(canvas)
+
     document.addEventListener('visibilitychange', onVisibility)
     motionQuery.addEventListener('change', onMotionChange)
     canvas.addEventListener('webglcontextlost', onContextLost)
-    window.addEventListener('resize', resize)
     play()
 
     return () => {
       stop()
       observer.disconnect()
+      resizeObserver.disconnect()
       document.removeEventListener('visibilitychange', onVisibility)
       motionQuery.removeEventListener('change', onMotionChange)
       canvas.removeEventListener('webglcontextlost', onContextLost)
-      window.removeEventListener('resize', resize)
       gl.deleteBuffer(buffer)
       gl.deleteProgram(program)
       gl.deleteShader(vertex)
