@@ -1,4 +1,3 @@
-import catFront from '../assets/poses/meowave-front.jpg'
 import { ContractBadge } from './ContractBadge'
 import { Icon } from './Icon'
 
@@ -66,44 +65,6 @@ export function Hero({ onPlay }: HeroProps) {
           </div>
 
           <ContractBadge className='hero__contract' />
-        </div>
-
-        <div className='hero-character' role='group' aria-labelledby='hero-character-title'>
-          <div className='hero-character__orbit' aria-hidden='true'>
-            <span />
-            <span />
-            <span />
-          </div>
-          <div className='hero-character__frame'>
-            <div className='hero-character__image-wrap'>
-              <img
-                src={catFront}
-                alt='Front view of Meowave, a low-poly orange-and-white cat wearing silver headphones'
-              />
-              <span className='hero-character__scan' aria-hidden='true' />
-            </div>
-            <div className='hero-character__label'>
-              <span>Meowave / 01</span>
-              <strong id='hero-character-title'>Frequency locked</strong>
-            </div>
-            <div className='hero-character__equalizer' aria-hidden='true'>
-              <span />
-              <span />
-              <span />
-              <span />
-              <span />
-            </div>
-          </div>
-
-          <span className='sol-shard sol-shard--one' aria-hidden='true'><Icon name='coin' /></span>
-          <span className='sol-shard sol-shard--two' aria-hidden='true'><Icon name='coin' /></span>
-          <span className='sol-shard sol-shard--three' aria-hidden='true'><Icon name='coin' /></span>
-
-          <div className='hero-character__caption'>
-            <span className='hero-character__caption-index'>A / 01</span>
-            <span>Meowave signal runner</span>
-            <span>Phantom ready</span>
-          </div>
         </div>
       </div>
 

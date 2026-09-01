@@ -50,11 +50,14 @@ Copy `.env.example` to `.env.local` and configure:
 
 ```dotenv
 DATABASE_URL=postgresql://USER:PASSWORD@HOST/DATABASE?sslmode=require
-VITE_SOLANA_RPC_URL=https://api.mainnet.solana.com
+VITE_SOLANA_RPC_URL=
 VITE_ELIGIBILITY_TOKEN_MINT=
 ```
 
-Use a dedicated Solana RPC provider in production because the public mainnet endpoint is rate-limited.
+`VITE_SOLANA_RPC_URL` is optional; a Helius mainnet endpoint is compiled into
+`src/wallet/WalletProvider.tsx` as the default. Vite inlines every `VITE_*` value into the client
+bundle, so any browser-side RPC key is public by nature — restrict it by domain in the provider
+dashboard rather than relying on it staying secret.
 
 `VITE_ELIGIBILITY_TOKEN_MINT` is optional. The published `$MWAVE` mint is compiled in through
 `src/config/token.ts`, which is also the single source for the contract address rendered across the

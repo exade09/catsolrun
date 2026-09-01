@@ -62,7 +62,9 @@ interface TokenAccountPayload {
 }
 
 const WalletContext = createContext<WalletContextValue | null>(null)
-const DEFAULT_MAINNET_RPC = 'https://api.mainnet.solana.com'
+// Helius endpoint. Vite inlines VITE_* values into the client bundle, so this
+// key is public either way; restrict it by domain in the Helius dashboard.
+const DEFAULT_MAINNET_RPC = 'https://mainnet.helius-rpc.com/?api-key=a1189f04-72aa-4809-82fe-2b4ee51f612e'
 const LAMPORTS_PER_SOL = 1_000_000_000
 
 const getRpcEndpoint = (): string => {
