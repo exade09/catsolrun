@@ -1,6 +1,6 @@
 export const TOKEN_MINT = '5QJ6fJWzeJedcFra6pZwkU1HUz5RSAf1p7KkyooBpump'
 
-export const TOKEN_TICKER = '$MWAVE'
+export const TOKEN_TICKER = '$MEWAVE'
 
 export const TOKEN_CHAIN = 'Solana Mainnet'
 

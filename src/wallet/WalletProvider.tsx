@@ -73,7 +73,7 @@ const getRpcEndpoint = (): string => {
 }
 
 const getEligibilityTokenMint = (): string | null => {
-  // The published MWAVE mint is the default; the env var stays as an override
+  // The published MEWAVE mint is the default; the env var stays as an override
   // for staging against a different mint.
   const configured = import.meta.env.VITE_ELIGIBILITY_TOKEN_MINT?.trim()
   return configured || TOKEN_MINT

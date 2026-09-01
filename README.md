@@ -59,7 +59,7 @@ VITE_ELIGIBILITY_TOKEN_MINT=
 bundle, so any browser-side RPC key is public by nature — restrict it by domain in the provider
 dashboard rather than relying on it staying secret.
 
-`VITE_ELIGIBILITY_TOKEN_MINT` is optional. The published `$MWAVE` mint is compiled in through
+`VITE_ELIGIBILITY_TOKEN_MINT` is optional. The published `$MEWAVE` mint is compiled in through
 `src/config/token.ts`, which is also the single source for the contract address rendered across the
 header, hero, tokenomics section, whitepaper, and the Pump.fun / DEX Screener / Solscan links.
 
@@ -67,7 +67,7 @@ header, hero, tokenomics section, whitepaper, and the Pump.fun / DEX Screener / 
 
 | Field | Value |
 | --- | --- |
-| Ticker | `$MWAVE` |
+| Ticker | `$MEWAVE` |
 | Chain | Solana Mainnet |
 | Mint | `5QJ6fJWzeJedcFra6pZwkU1HUz5RSAf1p7KkyooBpump` |
 
