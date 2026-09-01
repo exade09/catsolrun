@@ -14,6 +14,11 @@ const SEED = [
   { playerId: '5c2e70a3-84b1-4d69-8f30-e91a5b7c2064', nickname: '彈珠台', distance: 3670, sol: 74 },
   { playerId: '9a41d6b8-3e52-47fc-a015-7d8e2c96b143', nickname: 'neosol', distance: 2945, sol: 59 },
   { playerId: '2e690f47-c1a8-4b53-9d26-4f70a3e18d5c', nickname: 'mintdrifter', distance: 2130, sol: 43 },
+  { playerId: '3b7e2a10-6c94-4f28-9b31-5d0a86e4c927', nickname: 'lamportz', distance: 1480, sol: 30 },
+  { playerId: '8c14f9d6-2e73-4a5b-a8c0-1f639b7e2d45', nickname: 'slotwatcher', distance: 1120, sol: 22 },
+  { playerId: '6d0a3b58-91c7-4e62-b249-8a17c50f3e96', nickname: 'epochEddie', distance: 860, sol: 17 },
+  { playerId: '4e82c1f7-5a36-49db-8c74-2b90de61a538', nickname: 'bonkfren', distance: 540, sol: 11 },
+  { playerId: '1a95d7e3-8b02-4c1f-9e56-3d47f8b20c61', nickname: 'phantomPaws', distance: 295, sol: 6 },
 ]
 
 async function readDatabaseUrl() {
