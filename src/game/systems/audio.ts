@@ -1,4 +1,5 @@
 import { useGameStore } from '../../stores/gameStore'
+import { RetrowaveMusic } from './music'
 
 export type AudioCue =
   | 'ui'
@@ -27,9 +28,7 @@ const MIN_GAIN = 0.0001
 export class GameAudioSystem {
   private context: AudioContext | null = null
   private masterGain: GainNode | null = null
-  private musicOscillators: OscillatorNode[] = []
-  private musicNodes: AudioNode[] = []
-  private musicStarted = false
+  private music: RetrowaveMusic | null = null
   private readonly unsubscribe: () => void
 
   constructor() {
@@ -118,17 +117,7 @@ export class GameAudioSystem {
   }
 
   stopMusic(): void {
-    for (const oscillator of this.musicOscillators) {
-      try {
-        oscillator.stop()
-      } catch {
-        // The oscillator may already have stopped during browser audio cleanup.
-      }
-    }
-    for (const node of this.musicNodes) node.disconnect()
-    this.musicOscillators = []
-    this.musicNodes = []
-    this.musicStarted = false
+    this.music?.stop()
   }
 
   dispose(): void {
@@ -276,44 +265,14 @@ export class GameAudioSystem {
   }
 
   private async startMusicInternal(): Promise<void> {
-    if (this.musicStarted || !(await this.unlock())) return
+    if (!(await this.unlock())) return
     const context = this.context
     const masterGain = this.masterGain
     if (context === null || masterGain === null) return
 
-    const musicGain = context.createGain()
-    const filter = context.createBiquadFilter()
-    const root = context.createOscillator()
-    const fifth = context.createOscillator()
-    const pulse = context.createOscillator()
-    const pulseDepth = context.createGain()
-
-    musicGain.gain.value = 0.07
-    filter.type = 'lowpass'
-    filter.frequency.value = 760
-    filter.Q.value = 0.7
-    root.type = 'triangle'
-    root.frequency.value = 82.41
-    fifth.type = 'sine'
-    fifth.frequency.value = 123.47
-    pulse.type = 'sine'
-    pulse.frequency.value = 1.6
-    pulseDepth.gain.value = 0.018
-
-    root.connect(filter)
-    fifth.connect(filter)
-    filter.connect(musicGain)
-    pulse.connect(pulseDepth)
-    pulseDepth.connect(musicGain.gain)
-    musicGain.connect(masterGain)
-
-    const start = context.currentTime + 0.02
-    root.start(start)
-    fifth.start(start)
-    pulse.start(start)
-    this.musicOscillators = [root, fifth, pulse]
-    this.musicNodes = [root, fifth, pulse, pulseDepth, filter, musicGain]
-    this.musicStarted = true
+    if (this.music === null) this.music = new RetrowaveMusic(context, masterGain)
+    if (this.music.isRunning) return
+    this.music.start()
   }
 }
 
